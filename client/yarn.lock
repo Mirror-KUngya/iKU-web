@@ -2567,7 +2567,7 @@ vite-plugin-babel@^1.1.3:
   resolved "https://registry.npmjs.org/vite-plugin-babel/-/vite-plugin-babel-1.1.3.tgz"
   integrity sha512-WE8ORQm8530kj0geiDL1r/+P2MaU0b+5wL5E8Jq07aounFwRIUeJXziGiMr2DFQs78vaefB5GRKh257M8Z6gFQ==
 
-"vite@^2.7.0 || ^3.0.0 || ^4.0.0", vite@^4, vite@^4.0.0, vite@^4.4.5:
+"vite@^2.7.0 || ^3.0.0 || ^4.0.0", vite@^4, vite@^4.0.0, vite@^4.5.0:
   version "4.5.0"
   resolved "https://registry.npmjs.org/vite/-/vite-4.5.0.tgz"
   integrity sha512-ulr8rNLA6rkyFAlVWw2q5YJ91v098AFQ2R0PRFwPzREXOUJQPtFUG0t+/ZikhaOCDqFoDhN6/v8Sq0o4araFAw==
