@@ -2,7 +2,7 @@ import { Container, Title } from "./styles";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 const MainPage = () => {
   const { transcript, resetTranscript } = useSpeechRecognition();
@@ -14,6 +14,7 @@ const MainPage = () => {
     startListening();
     return () => {
       SpeechRecognition.stopListening();
+      resetTranscript();
     };
   }, []);
   const userName = "미러쿵야";
