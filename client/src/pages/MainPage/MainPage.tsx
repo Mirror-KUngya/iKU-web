@@ -14,9 +14,8 @@ const MainPage = () => {
     startListening();
     return () => {
       SpeechRecognition.stopListening();
-      resetTranscript();
     };
-  }, []);
+  }, [resetTranscript]);
   const userName = "미러쿵야";
 
   return (
