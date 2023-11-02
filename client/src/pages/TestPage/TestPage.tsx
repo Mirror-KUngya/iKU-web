@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 const TestPage = () => {
   const [output, setOutput] = useState("");
@@ -39,17 +39,17 @@ const TestPage = () => {
     }
   }, []);
 
-  const runCommand = async () => {
-    try {
-      const response = await axios.post("http://localhost:5003/run-command", {
-        command: "echo Hello, World!",
-      });
-      setOutput(response.data);
-    } catch (error) {
-      console.error("Error running command", error);
-      setOutput("Failed to run command");
-    }
-  };
+  // const runCommand = async () => {
+  //   try {
+  //     const response = await axios.post("http://localhost:5003/run-command", {
+  //       command: "echo Hello, World!",
+  //     });
+  //     setOutput(response.data);
+  //   } catch (error) {
+  //     console.error("Error running command", error);
+  //     setOutput("Failed to run command");
+  //   }
+  // };
 
   const runPythonScript = async () => {
     try {
