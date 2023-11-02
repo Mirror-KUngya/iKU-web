@@ -10,6 +10,7 @@ const TestPage = () => {
 
     if (SpeechRecognition) {
       const recognition = new SpeechRecognition();
+      console.log(recognition);
       recognition.lang = "ko-KR"; // 한국어로 설정
       recognition.continuous = true; // 연속적인 음성 인식 활성화
 
