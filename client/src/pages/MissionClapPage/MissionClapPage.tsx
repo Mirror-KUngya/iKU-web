@@ -24,8 +24,11 @@ const MissionClapPage = () => {
       if (data.event === "camera-started") {
         setStatus(MissionStatus.RUNNING);
       } else if (data.event === "result") {
-        if (data.data.includes("clap")) setClapCount((prev) => prev + 1);
+        if (data.data.includes("clap")) {
+          setClapCount((prev) => prev + 1);
+        }
       } else if (data.event === "close") {
+        if (clapCount >= 3) setMissionResult(true);
         eventSource.close();
         setStatus(MissionStatus.END);
       }

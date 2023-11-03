@@ -2,7 +2,7 @@ import { CheckListItem } from "../CheckListItem";
 import { Container, Title } from "./styles";
 import { useState } from "react";
 const CheckList = () => {
-  const [checkLists, setCheckLists] = useState([
+  const [checkLists] = useState([
     "가스 벨브 잠그기",
     "지팡이 챙기기",
     "현관문 잠그기",

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Container, Title } from "./styles";
 import { DailyMissionItem } from "../DailyMissionItem";
 const DailyMission = () => {
-  const [dailyMission, setDailyMission] = useState([
+  const [dailyMission] = useState([
     {
       title: "박수 치기",
       fulfilled: false,
