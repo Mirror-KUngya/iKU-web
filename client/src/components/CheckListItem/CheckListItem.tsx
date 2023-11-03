@@ -1,5 +1,8 @@
-const CheckListItem = () => {
-  return <div>가스 밸브 잠그기</div>;
+interface CheckListItemProps {
+  text: string;
+}
+const CheckListItem = ({ text }: CheckListItemProps) => {
+  return <div>{text}</div>;
 };
 
 export default CheckListItem;
