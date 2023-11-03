@@ -6,6 +6,21 @@ const Container = styled.div`
   align-items: center;
 `;
 
-const Title = styled.h2``;
+const RowContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-around;
+`;
 
-export { Container, Title };
+const Title = styled.h1`
+  font-size: 3rem;
+`;
+
+const Line = styled.div`
+  width: 70%;
+  height: 5px;
+  margin: 10% 0;
+  background-color: lightgray;
+`;
+export { Container, RowContainer, Title, Line };

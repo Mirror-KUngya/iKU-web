@@ -1,11 +1,6 @@
-import {
-  CheckList,
-  DailyMission,
-  DateInfo,
-  VoiceRecognition,
-} from "../../components";
+import { CheckList, DailyMission, DateInfo } from "../../components";
 import WheatherInfo from "../../components/WeatherInfo/WeatherInfo";
-import { Container, Title } from "./styles";
+import { Container, Line, RowContainer, Title } from "./styles";
 
 const MainPage = () => {
   const userName = "미러쿵야";
@@ -13,9 +8,11 @@ const MainPage = () => {
   return (
     <Container>
       <Title>{userName}님, 좋은 하루 입니다!</Title>
-      <VoiceRecognition />
-      <CheckList />
-      <DailyMission />
+      <RowContainer>
+        <CheckList />
+        <DailyMission />
+      </RowContainer>
+      <Line />
       <DateInfo />
       <WheatherInfo />
     </Container>
