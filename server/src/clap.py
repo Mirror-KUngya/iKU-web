@@ -103,7 +103,7 @@ while cap.isOpened():
     )
 
     # 화면에 결과를 표시합니다.
-    cv2.imshow("MediaPipe Pose", image)
+    # cv2.imshow("MediaPipe Pose", image)
 
     # ESC 키를 누르면 종료합니다.
     if cv2.waitKey(1) & 0xFF == 27:

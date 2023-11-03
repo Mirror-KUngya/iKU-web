@@ -129,7 +129,7 @@ while cap.isOpened():
     )
 
     # 화면에 이미지 표시
-    cv2.imshow("MediaPipe Pose", frame)
+    # cv2.imshow("MediaPipe Pose", frame)
 
     # 'q' 키를 누르면 종료
     if cv2.waitKey(10) & 0xFF == ord("q"):
