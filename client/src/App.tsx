@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import { MainPage, SpeechPage, TestPage } from "./pages";
+import { MainPage, SocketPage, SpeechPage, TestPage } from "./pages";
 
 function App() {
   return (
@@ -9,6 +9,7 @@ function App() {
         <Route path="/" element={<MainPage />} />
         <Route path="/test" element={<TestPage />} />
         <Route path="/speech" element={<SpeechPage />} />
+        <Route path="/socket" element={<SocketPage />} />
       </Routes>
     </BrowserRouter>
   );
