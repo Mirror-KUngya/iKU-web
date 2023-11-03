@@ -22,6 +22,7 @@ const TestPage = () => {
           ? setSmileStatus(true)
           : setSmileStatus(false);
       } else if (data.event === "close") {
+        eventSource.close();
         setStatus("End");
       }
     };
@@ -43,7 +44,7 @@ const TestPage = () => {
       if (data.event === "camera-started") {
         setStatus("Run");
       } else if (data.event === "result") {
-        if (data.data.include("clap")) setClapCount((prev) => prev + 1);
+        if (data.data.includes("clap")) setClapCount((prev) => prev + 1);
       } else if (data.event === "close") {
         eventSource.close();
         setStatus("End");

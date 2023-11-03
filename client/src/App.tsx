@@ -1,6 +1,13 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import { MainPage, SocketPage, SpeechPage, TestPage } from "./pages";
+import {
+  MainPage,
+  MissionClapPage,
+  MissionSidePage,
+  MissionSmilePage,
+  SpeechPage,
+  TestPage,
+} from "./pages";
 
 function App() {
   return (
@@ -9,7 +16,9 @@ function App() {
         <Route path="/" element={<MainPage />} />
         <Route path="/test" element={<TestPage />} />
         <Route path="/speech" element={<SpeechPage />} />
-        <Route path="/socket" element={<SocketPage />} />
+        <Route path="/mission/clap" element={<MissionClapPage />} />
+        <Route path="/mission/side" element={<MissionSidePage />} />
+        <Route path="/mission/smile" element={<MissionSmilePage />} />
       </Routes>
     </BrowserRouter>
   );

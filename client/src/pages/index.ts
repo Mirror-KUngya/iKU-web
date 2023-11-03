@@ -1,4 +1,6 @@
 export * from "./MainPage";
 export * from "./TestPage";
 export * from "./SpeechPage";
-export * from "./SocketPage";
+export * from "./MissionClapPage";
+export * from "./MissionSidePage";
+export * from "./MissionSmilePage";
