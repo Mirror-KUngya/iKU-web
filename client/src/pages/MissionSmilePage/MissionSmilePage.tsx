@@ -7,7 +7,6 @@ import {
   MissionStatusText,
 } from "../../commonStyles";
 import { MissionInfo } from "../../components";
-import { text } from "stream/consumers";
 
 const MissionSmilePage = () => {
   const ENDPOINT = "http://localhost:5001";
