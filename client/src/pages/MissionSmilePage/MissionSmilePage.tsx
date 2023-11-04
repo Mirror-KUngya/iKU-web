@@ -3,10 +3,11 @@ import MissionStatus from "../../utils/MissionStatus";
 import {
   Button,
   Conntainer,
-  SmileStatusText,
+  CurrentStatusText,
   MissionStatusText,
 } from "../../commonStyles";
 import { MissionInfo } from "../../components";
+import { text } from "stream/consumers";
 
 const MissionSmilePage = () => {
   const ENDPOINT = "http://localhost:5001";
@@ -61,8 +62,10 @@ const MissionSmilePage = () => {
           ? ` 미션 ${missionResult ? "성공!" : "실패"}`
           : "시작 버튼을 눌러 미션을 시작하세요! "}
       </MissionStatusText>
-      <Button onClick={runSmilePythonScript}>미션 시작</Button>
-      <SmileStatusText>{smileStatus ? "smile" : ""}</SmileStatusText>
+      <CurrentStatusText>{smileStatus ? "smile" : "\n"}</CurrentStatusText>
+      <Button onClick={runSmilePythonScript}>
+        <span>미션 시작</span>
+      </Button>
     </Conntainer>
   );
 };

@@ -3,7 +3,7 @@ import MissionStatus from "../../utils/MissionStatus";
 import {
   Button,
   Conntainer,
-  SmileStatusText,
+  CurrentStatusText,
   MissionStatusText,
 } from "../../commonStyles";
 import { MissionInfo } from "../../components";
@@ -62,9 +62,12 @@ const MissionSidePage = () => {
           ? ` 미션 ${missionResult ? "성공!" : "실패"}`
           : "시작 버튼을 눌러 미션을 시작하세요! "}
       </MissionStatusText>
-      <Button onClick={runSidePythonScript}>미션 시작</Button>
-      <SmileStatusText>왼쪽 횟수 : {leftCount}</SmileStatusText>
-      <SmileStatusText>오른쪽 횟수 : {rightCount}</SmileStatusText>
+      <CurrentStatusText>왼쪽 횟수 : {leftCount}</CurrentStatusText>
+      <CurrentStatusText>오른쪽 횟수 : {rightCount}</CurrentStatusText>
+
+      <Button onClick={runSidePythonScript}>
+        <span>미션 시작</span>
+      </Button>
     </Conntainer>
   );
 };

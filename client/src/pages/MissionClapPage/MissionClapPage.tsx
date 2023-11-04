@@ -3,7 +3,7 @@ import MissionStatus from "../../utils/MissionStatus";
 import {
   Button,
   Conntainer,
-  SmileStatusText,
+  CurrentStatusText,
   MissionStatusText,
 } from "../../commonStyles";
 import { MissionInfo } from "../../components";
@@ -60,8 +60,10 @@ const MissionClapPage = () => {
           ? ` 미션 ${missionResult ? "성공!" : "실패"}`
           : "시작 버튼을 눌러 미션을 시작하세요! "}
       </MissionStatusText>
-      <Button onClick={runClapPythonScript}>미션 시작</Button>
-      <SmileStatusText>박수 횟수 : {clapCount}</SmileStatusText>
+      <CurrentStatusText>박수 횟수 : {clapCount}</CurrentStatusText>
+      <Button onClick={runClapPythonScript}>
+        <span>미션 시작</span>
+      </Button>
     </Conntainer>
   );
 };

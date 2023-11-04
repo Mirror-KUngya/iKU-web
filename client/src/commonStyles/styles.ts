@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Conntainer = styled.div`
   text-align: center;
+  height: 100%;
 `;
 
 export const Title = styled.h1`
@@ -25,7 +26,8 @@ export const MissionStatusText = styled.p`
   font-size: 2.8rem;
 `;
 
-export const SmileStatusText = styled.p`
+export const CurrentStatusText = styled.p`
   font-size: 2.3rem;
   color: lightcoral;
+  min-height: 30px;
 `;
