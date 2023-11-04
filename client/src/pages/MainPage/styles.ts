@@ -6,6 +6,15 @@ const Container = styled.div`
   align-items: center;
 `;
 
+const Button = styled.div`
+  text-align: center;
+  background-color: white;
+  color: black;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 5px auto;
+`;
+
 const RowContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -23,4 +32,4 @@ const Line = styled.div`
   margin: 10% 0;
   background-color: lightgray;
 `;
-export { Container, RowContainer, Title, Line };
+export { Container, Button, RowContainer, Title, Line };

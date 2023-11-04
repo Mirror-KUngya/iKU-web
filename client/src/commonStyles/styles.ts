@@ -9,13 +9,19 @@ export const Title = styled.h1`
   font-size: 3rem;
 `;
 
-export const Button = styled.button`
+export const Button = styled.div`
   font-size: 1.8rem;
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
   padding: 20px;
-  margin: 20px;
+  margin: 20px auto;
   border-radius: 50%;
+  background-color: white;
+  text-align: center;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   &:hover {
     background-color: gray;
