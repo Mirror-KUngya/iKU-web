@@ -4,11 +4,13 @@ import { getCurrentLocationWeather } from "../../utils";
 const WheatherInfo = () => {
   const [weatherMain, setWeatherMain] = useState("");
   const [weatherDescription, setWeatherDescription] = useState("");
+  const [cityName, setCityName] = useState("");
 
   useEffect(() => {
     const fetchWeather = async () => {
       try {
-        const { weather } = await getCurrentLocationWeather();
+        const { weather, name } = await getCurrentLocationWeather();
+        setCityName(name);
         setWeatherMain(weather[0].main);
         setWeatherDescription(weather[0].description);
       } catch (error) {}
@@ -18,6 +20,7 @@ const WheatherInfo = () => {
   }, []);
   return (
     <div>
+      <p>{cityName}</p>
       <p>{weatherMain}</p>
       <p>{weatherDescription}</p>
     </div>
