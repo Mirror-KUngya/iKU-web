@@ -4,5 +4,4 @@ export * from "./DailyMissionItem";
 export * from "./VoiceRecognition";
 export * from "./DateInfo";
 export * from "./WeatherInfo";
-export * from "./MissionItem";
 export * from "./MissionInfo";

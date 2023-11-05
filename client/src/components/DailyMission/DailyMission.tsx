@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Container, Title } from "./styles";
 import { DailyMissionItem } from "../DailyMissionItem";
+import { FaPersonWalking } from "react-icons/fa6";
+
 const DailyMission = () => {
   const [dailyMission] = useState([
     {
@@ -9,11 +11,11 @@ const DailyMission = () => {
     },
     {
       title: "활짝 웃기",
-      fulfilled: false,
+      fulfilled: true,
     },
     {
       title: "옆구리 운동",
-      fulfilled: false,
+      fulfilled: true,
     },
     {
       title: "끝말잇기",
@@ -22,7 +24,10 @@ const DailyMission = () => {
   ]);
   return (
     <Container>
-      <Title>일일미션</Title>
+      <Title>
+        <FaPersonWalking size={"3rem"} />
+        일일미션
+      </Title>
       {dailyMission.map(({ title, fulfilled }, idx) => {
         return (
           <DailyMissionItem title={title} fulfilled={fulfilled} key={idx} />

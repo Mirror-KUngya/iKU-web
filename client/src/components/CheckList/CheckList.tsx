@@ -1,6 +1,7 @@
 import { CheckListItem } from "../CheckListItem";
 import { Container, Title } from "./styles";
 import { useState } from "react";
+import { PiCheckFatFill } from "react-icons/pi";
 const CheckList = () => {
   const [checkLists] = useState([
     "가스 벨브 잠그기",
@@ -9,7 +10,10 @@ const CheckList = () => {
   ]);
   return (
     <Container>
-      <Title>나가기 전 확인</Title>
+      <Title>
+        나가기 전 확인
+        <PiCheckFatFill size={"2rem"} />
+      </Title>
       {checkLists.map((li, idx) => {
         return <CheckListItem text={li} key={idx} />;
       })}

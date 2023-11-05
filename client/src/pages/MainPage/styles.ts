@@ -10,16 +10,22 @@ const Button = styled.div`
   text-align: center;
   background-color: white;
   color: black;
-  padding: 5px;
+  padding: 10px;
+  font-size: 1.2rem;
   border-radius: 5px;
-  margin: 5px auto;
+  margin: 10px;
+  width: 200px;
+  cursor: pointer;
+  &:hover {
+    background-color: gray;
+  }
 `;
 
 const RowContainer = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;
-  justify-content: space-around;
+  justify-content: space-between;
 `;
 
 const Title = styled.h1`
