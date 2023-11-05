@@ -6,6 +6,7 @@ import { Button, Container, Line, RowContainer, Title } from "./styles";
 const MainPage = () => {
   const userName = "미러쿵야";
   const navigate = useNavigate();
+
   return (
     <Container>
       <div>-- 미션페이지 바로가기 --</div>

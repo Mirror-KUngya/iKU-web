@@ -1,5 +1,5 @@
 import { useState } from "react";
-import MissionStatus from "../../utils/MissionStatus";
+import { MissionStatus } from "../../utils";
 import {
   Button,
   Conntainer,

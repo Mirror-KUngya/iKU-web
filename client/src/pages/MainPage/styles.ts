@@ -10,9 +10,9 @@ const Button = styled.div`
   text-align: center;
   background-color: white;
   color: black;
-  padding: 10px;
   font-size: 1.2rem;
   border-radius: 5px;
+  padding: 10px;
   margin: 10px;
   width: 200px;
   cursor: pointer;

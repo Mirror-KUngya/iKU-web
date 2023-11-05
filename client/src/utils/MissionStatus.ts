@@ -5,4 +5,4 @@ const MissionStatus = {
   DEFAULT: "default",
 };
 
-export default MissionStatus;
+export { MissionStatus };
