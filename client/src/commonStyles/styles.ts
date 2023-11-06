@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Conntainer = styled.div`
+export const Container = styled.div`
   text-align: center;
   height: 100%;
 `;
