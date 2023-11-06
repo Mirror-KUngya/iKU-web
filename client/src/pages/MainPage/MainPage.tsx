@@ -17,6 +17,7 @@ const MainPage = () => {
         <Button onClick={() => navigate("/mission/side")}>
           옆구리 스트레칭 미션
         </Button>
+        <Button onClick={() => navigate("/wordChain")}>끝말잇기</Button>
       </div>
       <Title>{userName}님, 좋은 하루 입니다!</Title>
       <RowContainer>

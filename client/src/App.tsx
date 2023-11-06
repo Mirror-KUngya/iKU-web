@@ -1,11 +1,13 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import {
+  LoginPage,
   MainPage,
   MissionClapPage,
   MissionSidePage,
   MissionSmilePage,
   SpeechPage,
   TestPage,
+  WordChainPage,
 } from "./pages";
 
 function App() {
@@ -18,6 +20,8 @@ function App() {
         <Route path="/mission/clap" element={<MissionClapPage />} />
         <Route path="/mission/side" element={<MissionSidePage />} />
         <Route path="/mission/smile" element={<MissionSmilePage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/wordChain" element={<WordChainPage />} />
       </Routes>
     </BrowserRouter>
   );
