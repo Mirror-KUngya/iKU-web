@@ -2,7 +2,7 @@ import { useState } from "react";
 import { MissionStatus } from "../../utils";
 import {
   Button,
-  Conntainer,
+  Container,
   CurrentStatusText,
   MissionStatusText,
 } from "../../commonStyles";
@@ -43,7 +43,7 @@ const MissionSmilePage = () => {
   };
 
   return (
-    <Conntainer>
+    <Container>
       <MissionInfo
         title="웃기"
         description={`거울을 정면으로 보고\n활짝 웃어 주세요!`}
@@ -65,7 +65,7 @@ const MissionSmilePage = () => {
       <Button onClick={runSmilePythonScript}>
         <span>미션 시작</span>
       </Button>
-    </Conntainer>
+    </Container>
   );
 };
 

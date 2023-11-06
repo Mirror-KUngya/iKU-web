@@ -1,6 +1,6 @@
 import {
   Button,
-  Conntainer,
+  Container,
   CurrentStatusText,
   MissionStatusText,
 } from "../../commonStyles";

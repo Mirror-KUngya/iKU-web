@@ -2,7 +2,7 @@ import { useState } from "react";
 import { MissionStatus } from "../../utils";
 import {
   Button,
-  Conntainer,
+  Container,
   CurrentStatusText,
   MissionStatusText,
 } from "../../commonStyles";
@@ -41,7 +41,7 @@ const MissionClapPage = () => {
   };
 
   return (
-    <Conntainer>
+    <Container>
       <MissionInfo
         title="박수치기"
         description={`거울을 정면으로 보고\n손뼉을 3회 크게 맞대주세요!`}
@@ -64,7 +64,7 @@ const MissionClapPage = () => {
       <Button onClick={runClapPythonScript}>
         <span>미션 시작</span>
       </Button>
-    </Conntainer>
+    </Container>
   );
 };
 
