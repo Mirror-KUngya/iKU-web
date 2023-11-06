@@ -4,3 +4,4 @@ export * from "./SpeechPage";
 export * from "./MissionClapPage";
 export * from "./MissionSidePage";
 export * from "./MissionSmilePage";
+export * from "./WordChainPage";
