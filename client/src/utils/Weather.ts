@@ -14,6 +14,7 @@ const getCurrentLocationWeather = async () => {
     });
 
     const { latitude, longitude } = position.coords;
+    console.log(`lat : ${latitude}, long : ${longitude}`);
     const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${process.env.REACT_APP_WEATHER_API_KEY}&lang=kr`;
 
     const response = await axios.get(url);
