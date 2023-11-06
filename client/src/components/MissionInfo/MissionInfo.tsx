@@ -3,7 +3,7 @@ import { Description, Title, Image, ImageWrapper } from "./styles";
 interface MissionInfoProps {
   title: string;
   description: string;
-  images: string[];
+  images?: string[];
 }
 const MissionInfo = ({ title, description, images }: MissionInfoProps) => {
   return (
@@ -11,9 +11,10 @@ const MissionInfo = ({ title, description, images }: MissionInfoProps) => {
       <Title>{title}</Title>
       <Description>{description}</Description>
       <ImageWrapper>
-        {images.map((img, idx) => {
-          return <Image src={img} key={idx} />;
-        })}
+        {images &&
+          images.map((img, idx) => {
+            return <Image src={img} key={idx} />;
+          })}
       </ImageWrapper>
     </>
   );

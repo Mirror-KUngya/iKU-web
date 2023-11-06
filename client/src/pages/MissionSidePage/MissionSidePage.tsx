@@ -2,7 +2,7 @@ import { useState } from "react";
 import { MissionStatus } from "../../utils";
 import {
   Button,
-  Conntainer,
+  Container,
   CurrentStatusText,
   MissionStatusText,
 } from "../../commonStyles";
@@ -43,7 +43,7 @@ const MissionSidePage = () => {
   };
 
   return (
-    <Conntainer>
+    <Container>
       <MissionInfo
         title="옆구리 운동"
         description={`거울을 정면으로 보고\n다음 동작을 따라해주세요!`}
@@ -68,7 +68,7 @@ const MissionSidePage = () => {
       <Button onClick={runSidePythonScript}>
         <span>미션 시작</span>
       </Button>
-    </Conntainer>
+    </Container>
   );
 };
 

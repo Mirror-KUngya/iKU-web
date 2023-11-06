@@ -1,28 +1,26 @@
-from flask import Flask, render_template
 import speech_recognition as sr
 
-app = Flask(__name__)
+r = sr.Recognizer()
+mic = sr.Microphone()
 
+with mic as source:
+    r.adjust_for_ambient_noise(source)
 
-@app.route("/")
-def index():
-    return render_template("index.html")
+while True:
+    with mic as source:
+        print("Speak now")
+        audio = r.listen(source, timeout=2, phrase_time_limit=2)
 
-
-@app.route("/voice")
-def voice():
-    r = sr.Recognizer()
-    with sr.Microphone() as source:
-        print("Say something:")
-        audio = r.listen(source)
     try:
-        text = r.recognize_google(audio, language="ko-KR")
-        return render_template("result.html", result=text)
+        result = r.recognize_google(audio, language="ko-KR")
+        print("인식된 결과:", result)
+        if result == "거울아":
+            print("음성인식을 시작합니다.")
     except sr.UnknownValueError:
-        return "Could not understand audio"
-    except sr.RequestError as e:
-        return "Could not request results; {0}".format(e)
-
-
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+        print("음성 인식 실패")
+    except sr.RequestError:
+        print("HTTP Request Error 발생")
+    except sr.WaitTimeoutError:
+        print("WaitTimeout Error 발생")
+    except Exception as e:
+        print(f"An error occurred: {e}")
