@@ -17,7 +17,7 @@ const wordType = {
 const WordChainPage = () => {
   const [type] = useState(wordType.제시어);
   const [suggestion] = useState("사과");
-  const [answer] = useState("");
+  // const [answer] = useState("");
   const [currentCount] = useState(1);
   const GOAL_COUNT = 3;
 
