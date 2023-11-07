@@ -1,12 +1,7 @@
-import {
-  Button,
-  Container,
-  CurrentStatusText,
-  MissionStatusText,
-} from "../../commonStyles";
+import { Container } from "../../commonStyles";
 
 const LoginPage = () => {
-  return <div>로그인</div>;
+  return <Container>로그인</Container>;
 };
 
 export default LoginPage;
