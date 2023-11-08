@@ -2,6 +2,10 @@ import cv2
 import mediapipe as mp
 import time
 import sys
+from playsound import playsound
+
+playsound("voice/side_start.mp3")
+print("loading", flush=True)
 
 # 초기화
 mp_drawing = mp.solutions.drawing_utils
@@ -36,8 +40,7 @@ while cap.isOpened():
         break
 
     if not camera_started_flag:  # 카메라 시작 플래그를 체크합니다.
-        print("Camera started")  # 카메라가 시작되면 이 메시지를 출력합니다.
-        sys.stdout.flush()
+        print("Camera started", flush=True)  # 카메라가 시작되면 이 메시지를 출력합니다.
         camera_started_flag = True  # 플래그를 설정하여 메시지가 다시 출력되지 않도록 합니다.
 
     if time.time() - start_time > 7:  # 7초 후 종료 조건 검사

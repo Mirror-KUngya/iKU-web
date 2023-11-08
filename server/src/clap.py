@@ -4,6 +4,11 @@ import numpy as np
 import sys
 import time
 
+from playsound import playsound
+
+playsound("voice/clap_start.mp3")
+print("loading", flush=True)
+
 mp_drawing_styles = mp.solutions.drawing_styles
 mp_drawing = mp.solutions.drawing_utils
 mp_pose = mp.solutions.pose

@@ -3,6 +3,10 @@ import cv2
 import mediapipe as mp
 import sys
 import collections
+from playsound import playsound
+
+playsound("voice/smile_start.mp3")
+print("loading", flush=True)
 
 # MediaPipe FaceMesh 초기화
 mp_face_mesh = mp.solutions.face_mesh
