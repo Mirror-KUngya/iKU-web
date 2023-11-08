@@ -1,11 +1,54 @@
 import { useNavigate } from "react-router-dom";
 import { CheckList, DailyMission, DateInfo } from "../../components";
 import WheatherInfo from "../../components/WeatherInfo/WeatherInfo";
-import { Button, Container, Line, RowContainer, Title } from "./styles";
+import {
+  Button,
+  Container,
+  Description,
+  HeaderText,
+  Line,
+  RowContainer,
+  Title,
+} from "./styles";
+import { useEffect, useState } from "react";
 
 const MainPage = () => {
+  const [titleText, setTitleText] = useState("");
+  const [recognizing, setRecognizing] = useState(false);
+
   const userName = "미러쿵야";
   const navigate = useNavigate();
+
+  const runSpeechRecognition = async () => {
+    const eventSource = new EventSource(
+      process.env.REACT_APP_API_ENDPOINT + "/speechRecognition"
+    );
+    eventSource.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+
+      if (data.event === "recognition-started") {
+        setTitleText(`"거울아"로 거울을 불러보세요!`);
+      } else if (data.event === "routing-start") {
+        setTitleText(`원하는 미션을 말해주세요`);
+        setRecognizing(true);
+      } else if (data.event === "routing") {
+        navigate(`/mission/${data.data}`);
+      } else if (data.event === "routing-failed") {
+        setTitleText(`${data.data}는 할 수 없는 일이에요.`);
+      } else if (data.event === "close") {
+        eventSource.close();
+      }
+    };
+
+    eventSource.onerror = (error) => {
+      console.error("EventSource failed:", error);
+      eventSource.close(); // 에러 발생시 연결을 닫습니다.
+    };
+  };
+
+  useEffect(() => {
+    runSpeechRecognition();
+  }, []);
 
   return (
     <Container>
@@ -19,7 +62,11 @@ const MainPage = () => {
         </Button>
         <Button onClick={() => navigate("/wordChain")}>끝말잇기</Button>
       </div>
-      <Title>{userName}님, 좋은 하루 입니다!</Title>
+      <HeaderText>{userName}님, 좋은 하루 입니다!</HeaderText>
+      <Title>{titleText}</Title>
+      {recognizing && (
+        <Description>ex - 박수치기, 웃기, 옆구리, 끝말잇기</Description>
+      )}
       <RowContainer>
         <CheckList />
         <DailyMission />
