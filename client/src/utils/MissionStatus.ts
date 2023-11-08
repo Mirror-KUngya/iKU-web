@@ -1,8 +1,9 @@
 const MissionStatus = {
-  READY: "ready",
-  RUNNING: "running",
+  READY: "READY",
+  RUNNING: "RUNNING",
   END: "END",
-  DEFAULT: "default",
+  DEFAULT: "DEFAULT",
+  ERROR: "ERROR",
 };
 
 export { MissionStatus };
