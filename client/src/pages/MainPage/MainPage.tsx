@@ -13,13 +13,14 @@ import {
 import { useEffect, useState } from "react";
 
 const MainPage = () => {
-  const [titleText, setTitleText] = useState("");
-  const [recognizing, setRecognizing] = useState(false);
-
   const userName = "미러쿵야";
   const navigate = useNavigate();
 
-  const runSpeechRecognition = async () => {
+  const [titleText, setTitleText] = useState("");
+  const [recognizing, setRecognizing] = useState(false);
+
+  useEffect(() => {
+    //runSpeechRecognition
     const eventSource = new EventSource(
       process.env.REACT_APP_API_ENDPOINT + "/speechRecognition"
     );
@@ -44,10 +45,7 @@ const MainPage = () => {
       console.error("EventSource failed:", error);
       eventSource.close(); // 에러 발생시 연결을 닫습니다.
     };
-  };
-
-  useEffect(() => {
-    runSpeechRecognition();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
