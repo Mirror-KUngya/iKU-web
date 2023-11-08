@@ -1,29 +1,43 @@
 import { useEffect, useState } from "react";
 import { getCurrentLocationWeather } from "../../utils";
+import { Container, Icon, Loading, Text } from "./styles";
+import { getWeatherIcon } from "../../utils";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 const WheatherInfo = () => {
-  const [weatherMain, setWeatherMain] = useState("");
+  const [loading, setLoading] = useState(true);
   const [weatherDescription, setWeatherDescription] = useState("");
-  const [cityName, setCityName] = useState("");
+  const [iconUrl, setIconUrl] = useState("");
+  const [temp, setTemp] = useState(0);
 
   useEffect(() => {
     const fetchWeather = async () => {
       try {
-        const { weather, name } = await getCurrentLocationWeather();
-        setCityName(name);
-        setWeatherMain(weather[0].main);
+        const { weather, main } = await getCurrentLocationWeather();
+        setLoading(false);
         setWeatherDescription(weather[0].description);
+        setIconUrl(getWeatherIcon(weather[0].icon));
+        setTemp(main.temp - 273.15);
       } catch (error) {}
     };
 
     fetchWeather();
   }, []);
   return (
-    <div>
-      <p>{cityName}</p>
-      <p>{weatherMain}</p>
-      <p>{weatherDescription}</p>
-    </div>
+    <Container>
+      {loading ? (
+        <Loading>
+          <AiOutlineLoading3Quarters size={"50px"} />
+        </Loading>
+      ) : (
+        <>
+          <Icon src={iconUrl} />
+          <Text>
+            {temp.toFixed(0)}°C {weatherDescription}
+          </Text>
+        </>
+      )}
+    </Container>
   );
 };
 
