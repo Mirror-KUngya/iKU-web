@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { MissionStatus } from "../../utils";
 import {
-  Button,
   Container,
   CurrentStatusText,
   MissionStatusText,
@@ -14,7 +13,8 @@ const MissionSidePage = () => {
   const [rightCount, setRightCount] = useState(0);
   const [missionResult, setMissionResult] = useState(false);
 
-  const runSidePythonScript = () => {
+  useEffect(() => {
+    // runSidePytonScript
     setLeftCount(0);
     setRightCount(0);
 
@@ -43,11 +43,6 @@ const MissionSidePage = () => {
       console.error("EventSource failed:", error);
       eventSource.close(); // 에러 발생시 연결을 닫습니다.
     };
-  };
-
-  console.log(status);
-  useEffect(() => {
-    runSidePythonScript();
   }, []);
 
   return (

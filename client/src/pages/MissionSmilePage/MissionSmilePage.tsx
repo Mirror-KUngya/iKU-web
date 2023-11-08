@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { MissionStatus } from "../../utils";
 import {
-  Button,
   Container,
   CurrentStatusText,
   MissionStatusText,
@@ -13,7 +12,8 @@ const MissionSmilePage = () => {
   const [smileStatus, setSmileStatus] = useState(false);
   const [missionResult, setMissionResult] = useState(false);
 
-  const runSmilePythonScript = () => {
+  useEffect(() => {
+    //runSmilePythonScript
     setSmileStatus(false);
 
     const eventSource = new EventSource(
@@ -42,10 +42,6 @@ const MissionSmilePage = () => {
       console.error("EventSource failed:", error);
       eventSource.close(); // 에러 발생시 연결을 닫습니다.
     };
-  };
-
-  useEffect(() => {
-    runSmilePythonScript();
   }, []);
 
   return (

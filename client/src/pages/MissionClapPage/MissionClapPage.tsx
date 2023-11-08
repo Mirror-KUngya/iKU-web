@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { MissionStatus } from "../../utils";
 import {
-  Button,
   Container,
   CurrentStatusText,
   MissionStatusText,
@@ -13,7 +12,8 @@ const MissionClapPage = () => {
   const [missionResult, setMissionResult] = useState(false);
   const [clapCount, setClapCount] = useState(0);
 
-  const runClapPythonScript = async () => {
+  useEffect(() => {
+    //runClapPythonScript
     setClapCount(0);
 
     const eventSource = new EventSource(
@@ -43,10 +43,6 @@ const MissionClapPage = () => {
       setStatus(MissionStatus.ERROR);
       eventSource.close(); // 에러 발생시 연결을 닫습니다.
     };
-  };
-
-  useEffect(() => {
-    runClapPythonScript();
   }, []);
 
   return (
@@ -54,11 +50,6 @@ const MissionClapPage = () => {
       <MissionInfo
         title="박수치기"
         description={`그림과 거울을 정면으로 보고\n박수를 3번 크게 쳐주세요!`}
-        // images={[
-        //   `${process.env.PUBLIC_URL}/image/clap1.png`,
-        //   `${process.env.PUBLIC_URL}/image/clap2.png`,
-        //   `${process.env.PUBLIC_URL}/image/clap3.png`,
-        // ]}
         images={[`${process.env.PUBLIC_URL}/image/clap.gif`]}
       />
       <MissionStatusText>
