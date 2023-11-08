@@ -21,7 +21,7 @@ function App() {
         <Route path="/mission/side" element={<MissionSidePage />} />
         <Route path="/mission/smile" element={<MissionSmilePage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/wordChain" element={<WordChainPage />} />
+        <Route path="/mission/wordChain" element={<WordChainPage />} />
       </Routes>
     </BrowserRouter>
   );
