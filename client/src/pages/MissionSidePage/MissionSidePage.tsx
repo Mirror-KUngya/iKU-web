@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import { MissionStatus } from "../../utils";
 import {
   Container,
@@ -31,8 +31,6 @@ const MissionSidePage = () => {
       } else if (data.event === "result") {
         if (data.data.trim() === "left") setLeftCount((cur) => cur + 1);
         else if (data.data.trim() === "right") setRightCount((cur) => cur + 1);
-
-        if (leftCount >= 2 && rightCount >= 2) setMissionResult(true);
       } else if (data.event === "close") {
         eventSource.close();
         setStatus(MissionStatus.END);
@@ -45,6 +43,10 @@ const MissionSidePage = () => {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (leftCount >= 2 && rightCount >= 2) setMissionResult(true);
+  }, [leftCount, rightCount]);
 
   return (
     <Container>

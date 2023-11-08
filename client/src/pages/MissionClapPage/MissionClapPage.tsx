@@ -30,7 +30,6 @@ const MissionClapPage = () => {
       } else if (data.event === "result") {
         if (data.data.includes("clap")) {
           setClapCount((prev) => prev + 1);
-          if (clapCount >= 3) setMissionResult(true);
         }
       } else if (data.event === "close") {
         eventSource.close();
@@ -45,6 +44,10 @@ const MissionClapPage = () => {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (clapCount >= 3) setMissionResult(true);
+  }, [clapCount]);
 
   return (
     <Container>
