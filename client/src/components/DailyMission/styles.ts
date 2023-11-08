@@ -5,6 +5,9 @@ const Container = styled.div`
   flex-direction: column;
   width: 30%;
   margin: 0 auto;
+  span {
+    font-size: 1.5rem;
+  }
 `;
 
 const Title = styled.h1`

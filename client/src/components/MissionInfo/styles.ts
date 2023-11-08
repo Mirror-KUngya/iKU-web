@@ -12,11 +12,12 @@ export const Description = styled.p`
 `;
 
 export const ImageWrapper = styled.div`
+  margin: 50px 0;
   width: 100%;
   display: flex;
   justify-content: space-around;
 `;
 
 export const Image = styled.img`
-  height: 15vh;
+  height: 30vh;
 `;
