@@ -14,7 +14,7 @@ const DateInfo = () => {
 
   const setCurrentTime = () => {
     const date = moment();
-    setTime(date.format("hh시 mm분 ss초"));
+    setTime(date.format("hh시 mm분"));
   };
 
   const startTimer = () => {
