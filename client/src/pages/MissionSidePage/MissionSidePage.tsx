@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useState } from "react";
+import { useEffect, useState } from "react";
 import { MissionStatus } from "../../utils";
 import {
   Container,
@@ -53,11 +53,6 @@ const MissionSidePage = () => {
       <MissionInfo
         title="옆구리 운동"
         description={`그림과 같이 거울을 정면으로 보고\n왼쪽 2번, 오른쪽 2번씩 각각 옆구리 운동을 해주세요!`}
-        // images={[
-        //   `${process.env.PUBLIC_URL}/image/side1.png`,
-        //   `${process.env.PUBLIC_URL}/image/side2.png`,
-        //   `${process.env.PUBLIC_URL}/image/side3.png`,
-        // ]}
         images={[`${process.env.PUBLIC_URL}/image/side.gif`]}
       />
       <MissionStatusText>
@@ -73,10 +68,6 @@ const MissionSidePage = () => {
       </MissionStatusText>
       <CurrentStatusText>왼쪽 횟수 : {leftCount}</CurrentStatusText>
       <CurrentStatusText>오른쪽 횟수 : {rightCount}</CurrentStatusText>
-
-      {/* <Button onClick={runSidePythonScript}>
-        <span>미션 시작</span>
-      </Button> */}
     </Container>
   );
 };

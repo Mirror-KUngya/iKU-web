@@ -6,7 +6,6 @@ import {
   WeatherInfo,
 } from "../../components";
 import {
-  Button,
   Container,
   Description,
   HeaderText,
