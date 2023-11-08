@@ -1,14 +1,25 @@
+import { useState } from "react";
 import { Container, TimeText, DateText } from "./styles";
 import moment from "moment";
 
 const DateInfo = () => {
   const today = moment();
-
+  const [time, setTime] = useState(today.format(" hh시 mm분"));
   // 요일 구하기
   const returnDay = (day: number) => {
     const days = ["일", "월", "화", "수", "목", "금", "토"];
     return days[day];
   };
+
+  const setCurrentTime = () => {
+    setTime(today.format(" hh시 mm분"));
+  };
+
+  const startTimer = () => {
+    setInterval(setCurrentTime, 1000 * 10); // 10초에 한번씩 시간 업데이트
+  };
+
+  startTimer();
 
   const dayOrNignt = (a: string) => (a === "AM" ? "오전" : "오후");
   return (
@@ -18,7 +29,7 @@ const DateInfo = () => {
       </DateText>
       <TimeText>
         {dayOrNignt(today.format("A"))}
-        {today.format(" hh시 mm분")}
+        {time}
       </TimeText>
     </Container>
   );
