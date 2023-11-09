@@ -1,22 +1,23 @@
 import styled, { keyframes } from "styled-components";
 
 export const Container = styled.div`
-  width: 30%;
+  width: 35%;
   align-items: end;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
-  max-height: 180px;
+  max-height: 220px;
 `;
 
 export const Icon = styled.img`
-  height: 100px;
+  height: 130px;
+  margin: 0;
 `;
 
 export const Text = styled.p`
-  font-size: 3rem;
+  font-size: 3.5rem;
   font-weight: 900;
-  margin: 30px 0 0 0;
+  margin: 20px 0 0 0;
 `;
 
 const rotate = keyframes`

@@ -24,18 +24,18 @@ const Button = styled.div`
 const RowContainer = styled.div`
   display: flex;
   flex-direction: row;
-  width: 90%;
+  width: 100%;
   justify-content: space-between;
 `;
 
 const HeaderText = styled.h1`
-  font-size: 2rem;
+  font-size: 2.5rem;
   color: gray;
   margin: 30px auto;
 `;
 
 const Title = styled.h1`
-  font-size: 3rem;
+  font-size: 3.5rem;
 
   span {
     font-weight: bold;
@@ -44,12 +44,12 @@ const Title = styled.h1`
 `;
 
 const Description = styled.h1`
-  font-size: 1.5;
+  font-size: 2;
   color: lightblue;
 `;
 
 const Line = styled.div`
-  width: 80%;
+  width: 90%;
   height: 5px;
   margin: 10% 0;
   background-color: lightgray;

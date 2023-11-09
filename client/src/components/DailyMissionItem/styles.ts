@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const ItemContainer = styled.div`
   padding: 10px;
-  margin: 5px;
+  margin: 10px;
   width: 100%;
   min-height: 50px;
   display: flex;
@@ -14,8 +14,8 @@ export const ItemContainer = styled.div`
 
 export const ItemTitle = styled.p`
   margin: 0;
-  padding: 0 5px;
-  font-size: 1.5rem;
+  padding: 10px;
+  font-size: 2rem;
   &.done {
     text-decoration: line-through;
     color: gray;

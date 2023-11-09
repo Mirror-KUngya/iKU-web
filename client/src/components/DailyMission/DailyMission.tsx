@@ -26,7 +26,7 @@ const DailyMission = () => {
     <Container>
       <Title>
         <FaPersonWalking size={"3rem"} />
-        일일미션
+        일일 미션
       </Title>
       {dailyMission.map(({ title, fulfilled }, idx) => {
         return (

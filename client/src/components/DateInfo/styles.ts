@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  width: 60%;
-  height: 180px;
+  width: 65%;
+  height: 220px;
   justify-content: space-between;
   font-weight: bold;
   display: flex;
@@ -11,9 +11,9 @@ export const Container = styled.div`
 `;
 
 export const DateText = styled.div`
-  font-size: 3.2rem;
+  font-size: 3.8rem;
 `;
 
 export const TimeText = styled.div`
-  font-size: 5rem;
+  font-size: 6.3rem;
 `;

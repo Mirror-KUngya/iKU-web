@@ -12,7 +12,7 @@ const CheckList = () => {
     <Container>
       <Title>
         나가기 전 확인
-        <PiCheckFatFill size={"2rem"} />
+        <PiCheckFatFill size={"3rem"} />
       </Title>
       {checkLists.map((li, idx) => {
         return <CheckListItem text={li} key={idx} />;
