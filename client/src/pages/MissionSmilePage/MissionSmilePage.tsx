@@ -37,6 +37,7 @@ const MissionSmilePage = () => {
         } else setSmileStatus(false);
         if (data.data.includes("mission success")) {
           setMissionResult(true);
+          navigate("/");
         }
       } else if (data.event === "close") {
         eventSource.close();

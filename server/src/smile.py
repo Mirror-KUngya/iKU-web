@@ -44,6 +44,7 @@ smile_start_time = None  # 웃기 시작한 시간
 smiling_time = 0  # 웃은 총 시간
 start_time = time.time()  # 프로그램 시작 시간
 
+camera_started_flag = False  # 카메라 시작 플래그 초기화
 
 while True:
     # ret, frame = cap.read()
@@ -69,6 +70,11 @@ while True:
     if frame is None:
         print("Error receiving frame from Picamera2.")
         break
+
+    if not camera_started_flag:  # 카메라 시작 플래그를 체크합니다.
+        print("Camera started")  # 카메라가 시작되면 이 메시지를 출력합니다.
+        sys.stdout.flush()
+        camera_started_flag = True  # 플래그를 설정하여 메시지가 다시 출력되지 않도록 합니다.
 
     image_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
     results = face_mesh.process(image_rgb)
