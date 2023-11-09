@@ -123,6 +123,7 @@ while True:
                     if smile_start_time is None:
                         smile_start_time = time.time()  # 웃기 시작한 시간 기록
                     is_smiling = True
+                    print("smile", flush=True)  # 표준 출력으로 "Smiling" 메시지 출력
                     cv2.putText(
                         image_rgb,
                         "Smiling",
@@ -140,6 +141,8 @@ while True:
                     if smile_start_time is not None:
                         # smiling_time += time.time() - smile_start_time  # 웃은 시간 누적
                         smile_start_time = None  # 웃음 시간 기록 리셋
+            else:
+                print("not", flush=True)
 
             mp.solutions.drawing_utils.draw_landmarks(
                 image_rgb,
@@ -153,6 +156,7 @@ while True:
         # 현재 웃고 있는 경우 지속 시간 업데이트
         current_smiling_time = time.time() - smile_start_time
         smiling_time = previous_smiling_time + current_smiling_time
+        print(smiling_time)  # 지우자
         cv2.putText(
             image_rgb,
             f"Smiling for: {current_smiling_time:.2f} sec",
@@ -194,11 +198,13 @@ while True:
     elapsed_time = current_time - start_time  # 프로그램 총 경과 시간 계산
 
     if smiling_time >= 5:
-        print("mission success")
+        print("mission success", flush=True)
+        playsound("voice/smile_success.mp3")
         break
 
     if elapsed_time >= 15:
-        print("mission failed")
+        print("mission failed", flush=True)
+        playsound("voice/mission_fail.mp3")
         break
 
     # 'q'를 누르면 반복문 탈출

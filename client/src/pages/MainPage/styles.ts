@@ -30,7 +30,7 @@ const RowContainer = styled.div`
 
 const HeaderText = styled.h1`
   font-size: 2.5rem;
-  color: gray;
+  color: lightgray;
   margin: 0;
 `;
 

@@ -32,7 +32,7 @@ const HourlyWeather = () => {
             imgUrl: getWeatherIcon(item.weather[0].icon),
           });
         });
-        console.log(temp);
+
         setHourlyData(temp);
       } catch (error) {}
     };

@@ -6,8 +6,10 @@ import {
   MissionStatusText,
 } from "../../commonStyles";
 import { MissionInfo } from "../../components";
+import { useNavigate } from "react-router-dom";
 
 const MissionSmilePage = () => {
+  const navigate = useNavigate();
   const [status, setStatus] = useState(MissionStatus.DEFAULT);
   const [smileStatus, setSmileStatus] = useState(false);
   const [missionResult, setMissionResult] = useState(false);
@@ -30,11 +32,14 @@ const MissionSmilePage = () => {
       } else if (data.event === "result") {
         if (data.data.includes("smile")) {
           setSmileStatus(true);
-          setMissionResult(true);
         } else setSmileStatus(false);
+        if (data.data.includes("mission success")) {
+          setMissionResult(true);
+        }
       } else if (data.event === "close") {
         eventSource.close();
         setStatus(MissionStatus.END);
+        navigate("/");
       }
     };
 
@@ -50,10 +55,6 @@ const MissionSmilePage = () => {
       <MissionInfo
         title="웃기"
         description={`그림과 같이 거울을 정면으로 보고\n5초 이상 활짝 웃어 주세요!`}
-        // images={[
-        //   `${process.env.PUBLIC_URL}/image/smile1.png`,
-        //   `${process.env.PUBLIC_URL}/image/smile2.png`,
-        // ]    }
         images={[`${process.env.PUBLIC_URL}/image/smile.gif`]}
       />
       <MissionStatusText>
@@ -68,9 +69,6 @@ const MissionSmilePage = () => {
           : "에러 발생, 네트워크를 확인해주세요. "}
       </MissionStatusText>
       <CurrentStatusText>{smileStatus ? "smile" : "\n"}</CurrentStatusText>
-      {/* <Button onClick={runSmilePythonScript}>
-        <span>미션 시작</span>
-      </Button> */}
     </Container>
   );
 };

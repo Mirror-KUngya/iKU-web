@@ -17,7 +17,7 @@ import {
 import { useEffect, useState } from "react";
 
 const MainPage = () => {
-  const userName = "미러쿵야";
+  const userName = "김건국";
   const navigate = useNavigate();
 
   const [titleText, setTitleText] = useState({ first: "", second: "" });
@@ -34,7 +34,7 @@ const MainPage = () => {
       if (data.event === "recognition-started") {
         setTitleText({
           first: `"거울아"`,
-          second: `로 거울을 불러보세요!`,
+          second: ` 로 거울을 불러보세요!`,
         });
       } else if (data.event === "routing-start") {
         setTitleText({ first: "", second: `원하는 미션을 말해주세요` });

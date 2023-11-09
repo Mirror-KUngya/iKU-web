@@ -47,7 +47,6 @@ app.get("/detect/:mission", (req, res) => {
   });
 
   pythonProcess.on("close", (code) => {
-    console.log(`child process exited with code ${code}`);
     res.write(`data: ${JSON.stringify({ event: "close", code: code })}\n\n`); // 종료 메시지
     res.end();
   });
