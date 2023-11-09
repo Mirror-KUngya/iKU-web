@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const ItemContainer = styled.div`
   padding: 10px;
   margin: 10px;
-  width: 100%;
+  width: 90%;
   min-height: 50px;
   display: flex;
   align-items: center;
@@ -11,7 +11,7 @@ export const ItemContainer = styled.div`
 `;
 
 export const ItemTitle = styled.p`
-  margin: 0;
-  padding: 10px;
-  font-size: 2rem;
+  margin: 5px;
+  padding: 15px;
+  font-size: 2.3rem;
 `;

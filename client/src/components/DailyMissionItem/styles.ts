@@ -3,19 +3,22 @@ import styled from "styled-components";
 export const ItemContainer = styled.div`
   padding: 10px;
   margin: 10px;
-  width: 100%;
+  width: 90%;
   min-height: 50px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-self: center;
   border: 1px white solid;
   border-radius: 10px;
+  svg {
+    align-self: center;
+  }
 `;
 
 export const ItemTitle = styled.p`
-  margin: 0;
-  padding: 10px;
-  font-size: 2rem;
+  margin: 5px;
+  padding: 15px;
+  font-size: 2.3rem;
   &.done {
     text-decoration: line-through;
     color: gray;

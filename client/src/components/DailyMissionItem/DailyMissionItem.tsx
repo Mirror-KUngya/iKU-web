@@ -8,7 +8,7 @@ const DailyMissionItem = ({ title, fulfilled }: DailyMissionItemProps) => {
   return (
     <ItemContainer>
       <ItemTitle className={fulfilled ? "done" : ""}>{title}</ItemTitle>
-      {fulfilled ? <BsCheck color="gray" size={"3rem"} /> : ""}
+      {fulfilled ? <BsCheck color="gray" size={"3.5rem"} /> : ""}
     </ItemContainer>
   );
 };
