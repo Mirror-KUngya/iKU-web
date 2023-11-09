@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
-import { getCurrentLocationWeather } from "../../utils";
+import {
+  getCurrentLocationWeather,
+  getHourlyLocationWeather,
+} from "../../utils";
 import { Container, Icon, Loading, Text } from "./styles";
 import { getWeatherIcon } from "../../utils";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
@@ -14,6 +17,8 @@ const WheatherInfo = () => {
     const fetchWeather = async () => {
       try {
         const { weather, main } = await getCurrentLocationWeather();
+        const data = await getHourlyLocationWeather();
+        console.log(data);
         setLoading(false);
         setWeatherDescription(weather[0].description);
         setIconUrl(getWeatherIcon(weather[0].icon));
