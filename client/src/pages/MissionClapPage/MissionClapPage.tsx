@@ -52,13 +52,15 @@ const MissionClapPage = () => {
       eventSource.close(); // 에러 발생시 연결을 닫습니다.
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [navigate]);
+  }, []);
 
   useEffect(() => {
     if (clapCount >= 3) {
       setMissionResult(true);
       navigate("/");
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [clapCount]);
 
   return (
