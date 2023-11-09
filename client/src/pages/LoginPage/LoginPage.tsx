@@ -32,8 +32,8 @@ const LoginPage = () => {
         <Input
           placeholder={"비밀번호"}
           type="password"
-          value={userId}
-          onChange={(e) => setUserID(e.target.value)}
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         ></Input>
         <LoginButton onClick={handleLogin}>로그인</LoginButton>
         <ButtonContainer>
