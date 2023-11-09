@@ -19,7 +19,6 @@ const HourlyWeather = () => {
     const fetchWeather = async () => {
       try {
         const { list } = await getHourlyLocationWeather();
-        console.log("list", list);
         setLoading(false);
 
         let temp: hourlyItem[] = [];

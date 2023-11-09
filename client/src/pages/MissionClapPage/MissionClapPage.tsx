@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { MissionStatus } from "../../utils";
+import { MissionStatus, setMissions } from "../../utils";
 import {
   Container,
   CurrentStatusText,
@@ -16,6 +16,7 @@ const MissionClapPage = () => {
     //runClapPythonScript
     setClapCount(0);
 
+    setMissions(1, true);
     const eventSource = new EventSource(
       process.env.REACT_APP_API_ENDPOINT + "/detect/clap"
     );
@@ -65,12 +66,10 @@ const MissionClapPage = () => {
           ? " 미션을 진행해주세요 . . ."
           : status === MissionStatus.END
           ? ` 미션 ${missionResult ? "성공!" : "실패"}`
-          : "에러 발생, 네트워크를 확인해주세요. "}
+          : ""}
+        {/* : "에러 발생, 네트워크를 확인해주세요. "} */}
       </MissionStatusText>
       <CurrentStatusText>박수 횟수 : {clapCount}</CurrentStatusText>
-      {/* <Button onClick={runClapPythonScript}>
-        <span>미션 시작</span>
-      </Button> */}
     </Container>
   );
 };

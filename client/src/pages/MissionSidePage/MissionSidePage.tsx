@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { MissionStatus } from "../../utils";
+import { MissionStatus, setMissions } from "../../utils";
 import {
   Container,
   CurrentStatusText,
@@ -23,6 +23,8 @@ const MissionSidePage = () => {
     );
     eventSource.onmessage = (event) => {
       const data = JSON.parse(event.data);
+
+      setMissions(3, true);
 
       if (data.event === "loading") {
         setStatus(MissionStatus.READY);

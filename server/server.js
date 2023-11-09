@@ -35,6 +35,12 @@ app.get("/detect/:mission", (req, res) => {
       // 카메라 시작 메시지를 처리합니다.
       console.log("Camera has started.");
       res.write(`data: ${JSON.stringify({ event: "camera-started" })}\n\n`);
+    } else if (message.includes("mission")) {
+      res.write(
+        `data: ${JSON.stringify({ event: "result", data: message })}\n\n`
+      );
+      res.write(`data: ${JSON.stringify({ event: "close" })}\n\n`); // 종료 메시지
+      res.end();
     } else {
       res.write(
         `data: ${JSON.stringify({ event: "result", data: message })}\n\n`

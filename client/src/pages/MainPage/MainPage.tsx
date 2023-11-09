@@ -66,7 +66,7 @@ const MainPage = () => {
         {titleText.second}
       </Title>
       {recognizing && (
-        <Description>ex - 박수치기, 웃기, 옆구리, 끝말잇기</Description>
+        <Description>예시 - 박수, 스마일, 옆구리, 끝말잇기</Description>
       )}
       <RowContainer>
         <CheckList />

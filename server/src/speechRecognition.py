@@ -27,15 +27,16 @@ keyword_links = ["clap", "smile", "side", "wordChain"]
 while True:
     with mic as source:
         try:
-            audio = r.listen(source, phrase_time_limit=2)
+            audio = r.listen(source, phrase_time_limit=3)
 
             result = r.recognize_google(audio, language="ko-KR")
 
             if listening_for_activation:
                 if result.find("거울아") != -1:
                     print("Routing Start", result, flush=True)  # 제어(라우팅) 시작
-                    playsound("voice/recognitionStart.wav")
+                    playsound("voice/recognitionStart.mp3")
                     listening_for_activation = False  # '거울아'가 감지되었으므로 명령을 기다림
+                    break
                 else:
                     print(result, "is not call mirror", flush=True)
             else:
