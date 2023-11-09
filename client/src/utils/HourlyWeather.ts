@@ -20,7 +20,7 @@ const getHourlyLocationWeather = async () => {
     console.error(err);
     throw err;
   } finally {
-    const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${process.env.REACT_APP_WEATHER_API_KEY}&lang=kr&cnt=10`;
+    const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${process.env.REACT_APP_WEATHER_API_KEY}&lang=kr&cnt=5`;
 
     const response = await axios.get(url);
 

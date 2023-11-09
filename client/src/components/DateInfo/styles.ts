@@ -7,7 +7,7 @@ export const Container = styled.div`
   font-weight: bold;
   display: flex;
   flex-direction: column;
-  margin: 0 auto;
+  margin: 0 auto 200px 0;
 `;
 
 export const DateText = styled.div`

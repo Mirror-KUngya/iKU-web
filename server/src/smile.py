@@ -1,6 +1,7 @@
 import time
 import cv2
 import mediapipe as mp
+import numpy as np
 import sys
 import collections
 from picamera2 import Picamera2
@@ -99,16 +100,14 @@ while True:
             prev_mouth_corners_relative_y.append(current_left_corner_relative_y)
             prev_mouth_corners_relative_y.append(current_right_corner_relative_y)
 
-            # 1초 전의 프레임과 입꼬리 상대 위치 및 너비 비교
+            # 웃음 감지
             if len(prev_mouth_widths) >= 1 and len(prev_mouth_corners_relative_y) >= 2:
-                # 1초 전 프레임의 데이터 가져오기
                 one_second_ago_width = prev_mouth_widths[0]
                 one_second_ago_left_corner_relative_y = prev_mouth_corners_relative_y[0]
                 one_second_ago_right_corner_relative_y = prev_mouth_corners_relative_y[
                     1
                 ]
 
-                # 입 너비가 넓어졌는지 및 입꼬리가 상대적으로 올라갔는지 확인
                 mouth_width_change = current_mouth_width - one_second_ago_width
                 mouth_corners_lift = (
                     one_second_ago_left_corner_relative_y
@@ -121,8 +120,11 @@ while True:
                     mouth_width_change > mouth_width_increase_threshold
                     and mouth_corners_lift > mouth_corner_lift_threshold
                 ):
+                    if smile_start_time is None:
+                        smile_start_time = time.time()  # 웃기 시작한 시간 기록
+                    is_smiling = True
                     cv2.putText(
-                        frame,
+                        image_rgb,
                         "Smiling",
                         (50, 50),
                         cv2.FONT_HERSHEY_SIMPLEX,
@@ -130,7 +132,6 @@ while True:
                         (255, 255, 255),
                         2,
                     )
-                    print("smile", flush=True)  # 표준 출력으로 "Smiling" 메시지 출력
 
                 elif (
                     mouth_width_change < return_to_neutral_threshold
@@ -140,15 +141,13 @@ while True:
                         # smiling_time += time.time() - smile_start_time  # 웃은 시간 누적
                         smile_start_time = None  # 웃음 시간 기록 리셋
 
-                else:
-                    print("not", flush=True)
-
             mp.solutions.drawing_utils.draw_landmarks(
                 image_rgb,
                 landmarks,
                 mp_face_mesh.FACEMESH_CONTOURS,
                 landmark_drawing_spec=drawing_spec,
             )
+
     # 웃음 지속 시간 표시
     if smile_start_time is not None:
         # 현재 웃고 있는 경우 지속 시간 업데이트
@@ -205,8 +204,6 @@ while True:
     # 'q'를 누르면 반복문 탈출
     if cv2.waitKey(5) & 0xFF == ord("q"):
         break
-    # 화면에 결과 표시
-    cv2.imshow("Face Landmarks", frame)
 
     # # 'q'를 누르면 프로그램 종료 (이 부분은 필요에 따라 제거할 수 있습니다)
     # if cv2.waitKey(1) & 0xFF == ord("q"):

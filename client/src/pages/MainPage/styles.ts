@@ -31,7 +31,7 @@ const RowContainer = styled.div`
 const HeaderText = styled.h1`
   font-size: 2.5rem;
   color: gray;
-  margin: 30px auto;
+  margin: 0;
 `;
 
 const Title = styled.h1`

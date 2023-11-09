@@ -3,6 +3,7 @@ import {
   CheckList,
   DailyMission,
   DateInfo,
+  HourlyWeather,
   WeatherInfo,
 } from "../../components";
 import {
@@ -59,16 +60,6 @@ const MainPage = () => {
 
   return (
     <Container>
-      {/* <div>-- 미션페이지 바로가기 --</div>
-      <div>음성인식 적용되면 버튼으로 된 것들은 모두 지울 예정</div>
-      <div style={{ display: "flex" }}>
-        <Button onClick={() => navigate("/mission/clap")}>박수치기 미션</Button>
-        <Button onClick={() => navigate("/mission/smile")}>웃기 미션</Button>
-        <Button onClick={() => navigate("/mission/side")}>
-          옆구리 스트레칭 미션
-        </Button>
-        <Button onClick={() => navigate("/mission/wordChain")}>끝말잇기</Button>
-      </div> */}
       <HeaderText>{userName}님, 좋은 하루 입니다!</HeaderText>
       <Title>
         <span>{titleText.first}</span>
@@ -86,6 +77,7 @@ const MainPage = () => {
         <DateInfo />
         <WeatherInfo />
       </RowContainer>
+      <HourlyWeather />
     </Container>
   );
 };

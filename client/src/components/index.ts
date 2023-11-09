@@ -5,3 +5,4 @@ export * from "./VoiceRecognition";
 export * from "./DateInfo";
 export * from "./WeatherInfo";
 export * from "./MissionInfo";
+export * from "./HourlyWeather";
