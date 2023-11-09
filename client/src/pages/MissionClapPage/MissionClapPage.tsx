@@ -35,10 +35,13 @@ const MissionClapPage = () => {
         if (data.data.includes("clap")) {
           setClapCount((prev) => prev + 1);
         }
+      }
+      if (data.data.includes("mission success")) {
+        setMissionResult(true);
+        navigate("/");
       } else if (data.event === "close") {
         eventSource.close();
         setStatus(MissionStatus.END);
-
         navigate("/");
       }
     };
