@@ -24,7 +24,7 @@ const MissionSidePage = () => {
     eventSource.onmessage = (event) => {
       const data = JSON.parse(event.data);
 
-      setMissions(3, true);
+      setMissions(2, true);
 
       if (data.event === "loading") {
         setStatus(MissionStatus.READY);

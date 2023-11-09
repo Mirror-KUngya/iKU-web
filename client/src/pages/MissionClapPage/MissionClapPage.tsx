@@ -6,8 +6,10 @@ import {
   MissionStatusText,
 } from "../../commonStyles";
 import { MissionInfo } from "../../components";
+import { useNavigate } from "react-router-dom";
 
 const MissionClapPage = () => {
+  const navigate = useNavigate();
   const [status, setStatus] = useState(MissionStatus.DEFAULT);
   const [missionResult, setMissionResult] = useState(false);
   const [clapCount, setClapCount] = useState(0);
@@ -16,7 +18,8 @@ const MissionClapPage = () => {
     //runClapPythonScript
     setClapCount(0);
 
-    setMissions(1, true);
+    setMissions(0, true);
+
     const eventSource = new EventSource(
       process.env.REACT_APP_API_ENDPOINT + "/detect/clap"
     );
@@ -35,6 +38,8 @@ const MissionClapPage = () => {
       } else if (data.event === "close") {
         eventSource.close();
         setStatus(MissionStatus.END);
+
+        navigate("/");
       }
     };
 
@@ -47,7 +52,10 @@ const MissionClapPage = () => {
   }, []);
 
   useEffect(() => {
-    if (clapCount >= 3) setMissionResult(true);
+    if (clapCount >= 3) {
+      setMissionResult(true);
+      navigate("/");
+    }
   }, [clapCount]);
 
   return (
