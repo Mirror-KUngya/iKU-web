@@ -5,6 +5,8 @@ const port = 5001;
 const cors = require("cors");
 const { spawn } = require("child_process");
 
+let pythonProcess = null;
+
 app.use(cors());
 app.use(express.json());
 
@@ -16,6 +18,11 @@ const eventStreamHeaderOption = {
 };
 
 app.get("/detect/:mission", (req, res) => {
+  if (pythonProcess) {
+    pythonProcess.kill();
+    pythonProcess = null;
+  }
+
   res.writeHead(200, eventStreamHeaderOption);
 
   const mission = req.params.mission;
@@ -24,7 +31,7 @@ app.get("/detect/:mission", (req, res) => {
   else if (mission === "clap") targetFile = "clap.py";
   else if (mission === "side") targetFile = "side.py";
 
-  const pythonProcess = spawn("python3", [`src/${targetFile}`]);
+  pythonProcess = spawn("python3", [`src/${targetFile}`]);
 
   pythonProcess.stdout.on("data", (data) => {
     const message = data.toString();
@@ -53,15 +60,84 @@ app.get("/detect/:mission", (req, res) => {
   });
 
   pythonProcess.on("close", (code) => {
+    console.log("승리");
+    res.write(`data: ${JSON.stringify({ event: "close", code: code })}\n\n`); // 종료 메시지
+    res.end();
+  });
+});
+
+app.get("/wordChain", (req, res) => {
+  if (pythonProcess) {
+    pythonProcess.kill();
+    pythonProcess = null;
+  }
+  res.writeHead(200, eventStreamHeaderOption);
+
+  pythonProcess = spawn("python3", [`src/wordChain.py`]);
+
+  pythonProcess.stdout.on("data", (data) => {
+    const messages = data.toString().split("\n");
+
+    messages.forEach((message) => {
+      if (message.includes("Recognition Start")) {
+      } else if (message.includes("answer")) {
+        const answerMessage = message.split(">");
+        res.write(
+          `data: ${JSON.stringify({
+            event: "answer",
+            data: answerMessage[1],
+          })}\n\n`
+        );
+      } else if (message.includes("suggestion")) {
+        const suggestionMessage = message.split(">");
+        res.write(
+          `data: ${JSON.stringify({
+            event: "suggestion",
+            data: suggestionMessage[1],
+          })}\n\n`
+        );
+      } else if (message.includes("count")) {
+        const countMessage = message.split(">");
+        res.write(
+          `data: ${JSON.stringify({
+            event: "count",
+            data: parseInt(countMessage[1]),
+          })}\n\n`
+        );
+      } else if (message.includes("no word")) {
+        res.write(
+          `data: ${JSON.stringify({
+            event: "no-word-win",
+          })}\n\n`
+        );
+      } else {
+        res.write(
+          `data: ${JSON.stringify({ event: "not-answer", data: message })}\n\n`
+        );
+      }
+    });
+  });
+
+  pythonProcess.stderr.on("data", (data) => {
+    console.error(`stderr: ${data}`);
+  });
+
+  pythonProcess.on("close", (code) => {
+    console.log(`child process exited with code ${code}`);
     res.write(`data: ${JSON.stringify({ event: "close", code: code })}\n\n`); // 종료 메시지
     res.end();
   });
 });
 
 app.get("/speechRecognition", (req, res) => {
+  if (pythonProcess) {
+    pythonProcess.kill();
+    pythonProcess = null;
+  }
+
   res.writeHead(200, eventStreamHeaderOption);
 
-  const pythonProcess = spawn("python3", [`src/speechRecognition.py`]);
+  pythonProcess = spawn("python3", [`src/speechRecognition.py`]);
 
   pythonProcess.stdout.on("data", (data) => {
     const message = data.toString();
