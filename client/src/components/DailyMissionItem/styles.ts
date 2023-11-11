@@ -9,7 +9,7 @@ export const ItemContainer = styled.div`
   justify-content: space-between;
   align-self: center;
   border: 1px white solid;
-  border-radius: 10px;
+  border-radius: 20px;
   svg {
     align-self: center;
   }

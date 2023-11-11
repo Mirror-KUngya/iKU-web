@@ -1,22 +1,54 @@
 import styled from "styled-components";
 
+export const Container = styled.div`
+  display: flex;
+  padding: 3vh 0;
+  height: 90vh;
+  flex-direction: column;
+  text-align: center;
+`;
+
 export const WordContainer = styled.div`
   display: flex;
   flex-direction: column;
+  margin: 0;
 `;
 
-export const TypeText = styled.p`
-  font-size: 1.8rem;
-`;
-
-export const WordText = styled.p`
-  font-size: 2rem;
-`;
-
-export const CountContainer = styled.div`
-  p {
-    font-size: 1rem;
+export const RecordText = styled.p`
+  font-size: 3rem;
+  margin: 3rem 0;
+  color: gray;
+  span {
+    color: lightslategray;
   }
 `;
 
-export const DescriptionContainer = styled.div``;
+export const TypeText = styled.p`
+  font-size: 4.5rem;
+  margin: 0;
+`;
+
+export const WordText = styled.p`
+  font-size: 13rem;
+  font-weight: bold;
+  margin: 2rem 0;
+`;
+
+export const CountContainer = styled.div`
+  margin: 3rem 0;
+  font-size: 5rem;
+  p {
+    font-size: 3rem;
+  }
+`;
+
+export const DescriptionCountContainer = styled.div`
+  margin: 2rem 0;
+  font-size: 4rem;
+`;
+
+export const DescriptionContainer = styled.div`
+  margin: 2rem 0;
+  font-size: 4rem;
+  color: lightpink;
+`;

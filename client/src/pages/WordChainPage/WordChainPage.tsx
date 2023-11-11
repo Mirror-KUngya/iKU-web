@@ -1,43 +1,109 @@
-import { useState } from "react";
-import { Container } from "../../commonStyles";
+import { useEffect, useState } from "react";
 import { MissionInfo } from "../../components";
 import {
+  Container,
   CountContainer,
   DescriptionContainer,
+  DescriptionCountContainer,
+  RecordText,
   TypeText,
   WordContainer,
   WordText,
 } from "./styles";
+import { useNavigate } from "react-router-dom";
 
-const wordType = {
-  제시어: "제시어",
-  나의_답: "나의 대답",
+const turnType = {
+  미러: "미러",
+  사용자: "사용자",
 };
 
 const WordChainPage = () => {
-  const [type] = useState(wordType.제시어);
-  const [suggestion] = useState("사과");
-  // const [answer] = useState("");
-  const [currentCount] = useState(1);
+  const navigate = useNavigate();
+  const [suggestion, setSuggestion] = useState("");
+  const [record, setRecord] = useState("");
+  const [answer, setAnswer] = useState("");
+  const [turn, setTurn] = useState(turnType.미러);
+  const [currentCount, setCurrentCount] = useState(0);
+  const [noWordWin, setNoWordWin] = useState(false); // 이어갈 단어가 없는 경우 :유저 승리
   const GOAL_COUNT = 3;
+
+  const getAnswerBySpeech = () => {
+    const eventSource = new EventSource(
+      process.env.REACT_APP_API_ENDPOINT + "/wordChain"
+    );
+
+    eventSource.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+
+      if (data.event === "answer") {
+        console.log(data.data);
+        setAnswer(data.data);
+        setRecord((record) => `${record} - ${data.data}`);
+        setTurn(turnType.사용자);
+      } else if (data.event === "suggestion") {
+        console.log(data.data);
+        setSuggestion(data.data);
+        setRecord((record) => `${record} - ${data.data}`);
+        setTurn(turnType.미러);
+      } else if (data.event === "count") {
+        setCurrentCount(parseInt(data.data));
+      } else if (data.event === "no-word-win") {
+        setNoWordWin(true);
+        setCurrentCount(GOAL_COUNT);
+      } else if (data.event === "close") {
+        eventSource.close();
+        navigate("/");
+      } else {
+      }
+    };
+    eventSource.onerror = (error) => {
+      console.error("EventSource failed:", error);
+      eventSource.close(); // 에러 발생시 연결을 닫습니다.
+    };
+  };
+
+  useEffect(() => {
+    getAnswerBySpeech();
+  }, []);
 
   return (
     <Container>
       <MissionInfo
         title="끝말잇기"
-        description="iKU와 함께하는 끝말잇기 게임!"
+        description={`iKU와 함께하는 끝말잇기 게임`}
       />
+      <DescriptionCountContainer>
+        {currentCount === GOAL_COUNT - 3
+          ? "3번 승리하면 성공이에요!"
+          : currentCount === GOAL_COUNT - 2
+          ? "성공까지 2번 남았어요!"
+          : currentCount === GOAL_COUNT - 1
+          ? "마지막 한번! 조금만 힘내세요!"
+          : "축하합니다. 끝말잇기 미션 성공했습니다."}
+      </DescriptionCountContainer>
+      <RecordText>
+        <span>[기록] </span>
+        {record}
+      </RecordText>
       <WordContainer>
-        <TypeText>{type}</TypeText>
-        <WordText>{suggestion}</WordText>
+        <TypeText>{turn === turnType.미러 ? "제시어" : "당신의 대답"}</TypeText>
+        <WordText>{turn === turnType.미러 ? suggestion : answer}</WordText>
       </WordContainer>
-      <DescriptionContainer>
-        <span>{`${suggestion.charAt(suggestion.length - 1)} `}</span>(으)로
-        끝나는 단어를 말해주세요!
-      </DescriptionContainer>
-      <CountContainer>
-        {currentCount}/{GOAL_COUNT}
-      </CountContainer>
+      {noWordWin ? (
+        <DescriptionContainer>
+          거울이 더 이상 아는 단어가 없어서 끝말잇기를 종료합니다
+        </DescriptionContainer>
+      ) : (
+        <>
+          <DescriptionContainer>
+            <span>{`${suggestion.charAt(suggestion.length - 1)} `}</span>(으)로
+            시작하는 단어를 말해주세요!
+          </DescriptionContainer>
+          <CountContainer>
+            {currentCount}/{GOAL_COUNT}
+          </CountContainer>
+        </>
+      )}
     </Container>
   );
 };
