@@ -33,12 +33,12 @@ const MissionSmilePage = () => {
         if (data.data.includes("smile")) setSmileStatus(true);
         else if (data.data.includes("not")) setSmileStatus(false);
         if (data.data.includes("mission")) {
+          setStatus(MissionStatus.END);
           if (data.data.includes("success")) setMissionResult(true);
           else if (data.data.includes("failed")) setMissionResult(false);
         }
       } else if (data.event === "close") {
         eventSource.close();
-        setStatus(MissionStatus.END);
         navigate("/");
       }
     };

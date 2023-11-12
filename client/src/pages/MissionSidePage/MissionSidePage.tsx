@@ -33,11 +33,13 @@ const MissionSidePage = () => {
       } else if (data.event === "result") {
         if (data.data.includes("left")) setLeftCount((cur) => cur + 1);
         else if (data.data.includes("right")) setRightCount((cur) => cur + 1);
-        else if (data.data.includes("success")) setMissionResult(true);
-        else if (data.data.includes("failed")) setMissionResult(false);
+        if (data.data.includes("mission")) {
+          setStatus(MissionStatus.END);
+          if (data.data.includes("success")) setMissionResult(true);
+          else if (data.data.includes("failed")) setMissionResult(false);
+        }
       } else if (data.event === "close") {
         eventSource.close();
-        setStatus(MissionStatus.END);
         navigate("/");
       }
     };

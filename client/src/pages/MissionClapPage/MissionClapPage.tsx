@@ -33,11 +33,13 @@ const MissionClapPage = () => {
         if (data.data.includes("clap")) setClapCount((prev) => prev + 1);
         else if (data.data.includes("canceled"))
           setClapCount((prev) => prev - 1);
-        else if (data.data.includes("success")) setMissionResult(true);
-        else if (data.data.includes("failed")) setMissionResult(false);
+        if (data.data.includes("mission")) {
+          setStatus(MissionStatus.END);
+          if (data.data.includes("success")) setMissionResult(true);
+          else if (data.data.includes("failed")) setMissionResult(false);
+        }
       } else if (data.event === "close") {
         eventSource.close();
-        setStatus(MissionStatus.END);
         navigate("/");
       }
     };
