@@ -1,39 +1,53 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Container, Title } from "./styles";
 import { DailyMissionItem } from "../DailyMissionItem";
 import { FaPersonWalking } from "react-icons/fa6";
-// import { useGetMissions } from "../../hooks/getMissions";
-// import moment from "moment";
+import { useGetMissions } from "../../hooks/getMissions";
+import { Missions } from "../../types";
+import moment from "moment";
 
 const DailyMission = () => {
-  const [dailyMission] = useState([
+  const UserID = "aaa1";
+  const MissionDate = moment().format("YYYY-MM-DD");
+
+  const { mutate, data } = useGetMissions(UserID, MissionDate);
+
+  useEffect(() => {
+    mutate();
+  }, []);
+
+  useEffect(() => {
+    if (data) {
+      const updatedMissions = dailyMission.map((mission) => {
+        return { ...mission, fulfilled: data[mission.name as keyof Missions] };
+      });
+
+      setDailyMission(updatedMissions);
+    }
+  }, [data]);
+
+  const [dailyMission, setDailyMission] = useState([
     {
       title: "박수 치기",
-      name: "clap",
-      fulfilled: false,
+      name: "Clap",
+      fulfilled: data ? data.Clap : false,
     },
     {
       title: "활짝 웃기",
-      fulfilled: true,
+      name: "Smile",
+      fulfilled: data ? data.Smile : false,
     },
     {
       title: "옆구리 운동",
-      fulfilled: true,
+      name: "Exercise",
+      fulfilled: false,
     },
     {
       title: "끝말잇기",
-      fulfilled: false,
+      name: "WordChain",
+      fulfilled: data ? data.WordChain : false,
     },
   ]);
-  // const UserID = "test";
-  // const MissionDate = moment().format("YYYY-MM-DD");
-
-  // const { mutate, data } = useGetMissions(UserID, MissionDate);
-
-  // useEffect(() => {
-  //   mutate();
-  //   if (data) console.log(data);
-  // }, []);
 
   return (
     <Container>

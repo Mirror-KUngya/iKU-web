@@ -7,9 +7,8 @@ const getMissions = async (
   UserID: string,
   MissionDate: string
 ): Promise<Missions> => {
-  const response = await instance.get(`/missions`);
+  const response = await instance.get(`/missions/${UserID}/${MissionDate}`);
 
-  console.log(response);
   return response.data;
 };
 
