@@ -36,7 +36,7 @@ const HeaderText = styled.h1`
 
 const Title = styled.h1`
   font-size: 3.5rem;
-
+  text-align: center;
   span {
     font-weight: bold;
     color: lightpink;
