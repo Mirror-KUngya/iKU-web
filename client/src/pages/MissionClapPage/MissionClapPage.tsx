@@ -24,7 +24,7 @@ const MissionClapPage = () => {
 
     eventSource.onmessage = (event) => {
       const data = JSON.parse(event.data);
-
+      console.log(data);
       if (data.event === "loading") {
         setStatus(MissionStatus.READY);
       } else if (data.event === "camera-started") {
@@ -35,10 +35,6 @@ const MissionClapPage = () => {
           setClapCount((prev) => prev - 1);
         else if (data.data.includes("success")) setMissionResult(true);
         else if (data.data.includes("failed")) setMissionResult(false);
-      }
-      if (data.data.includes("mission success")) {
-        setMissionResult(true);
-        navigate("/");
       } else if (data.event === "close") {
         eventSource.close();
         setStatus(MissionStatus.END);
@@ -67,7 +63,7 @@ const MissionClapPage = () => {
     <Container>
       <MissionInfo
         title="박수치기"
-        description={`그림과 거울을 정면으로 보고\n박수를 3번 크게 쳐주세요!`}
+        description={`그림과 같이 거울을 정면으로 보고\n박수를 3번 크게 쳐주세요!`}
         images={[`${process.env.PUBLIC_URL}/image/clap.gif`]}
       />
       <MissionStatusText>

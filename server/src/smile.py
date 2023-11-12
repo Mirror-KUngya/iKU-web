@@ -129,8 +129,8 @@ while True:
                     if smile_start_time is not None:
                         # smiling_time += time.time() - smile_start_time  # 웃은 시간 누적
                         smile_start_time = None  # 웃음 시간 기록 리셋
-            else:
-                print("not", flush=True)
+                if not is_smiling:
+                    print("not", flush=True)
 
             mp.solutions.drawing_utils.draw_landmarks(
                 image_rgb,

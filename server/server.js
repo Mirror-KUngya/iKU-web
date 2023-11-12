@@ -46,8 +46,8 @@ app.get("/detect/:mission", (req, res) => {
       res.write(
         `data: ${JSON.stringify({ event: "result", data: message })}\n\n`
       );
-      res.write(`data: ${JSON.stringify({ event: "close" })}\n\n`); // 종료 메시지
-      res.end();
+      // res.write(`data: ${JSON.stringify({ event: "close" })}\n\n`); // 종료 메시지
+      // res.end();
     } else {
       res.write(
         `data: ${JSON.stringify({ event: "result", data: message })}\n\n`
@@ -60,7 +60,6 @@ app.get("/detect/:mission", (req, res) => {
   });
 
   pythonProcess.on("close", (code) => {
-    console.log("승리");
     res.write(`data: ${JSON.stringify({ event: "close", code: code })}\n\n`); // 종료 메시지
     res.end();
   });
