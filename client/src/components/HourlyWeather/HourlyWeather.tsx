@@ -28,7 +28,7 @@ const HourlyWeather = () => {
           temp.push({
             time: `${dayorNight} ${time.format("h시")}`,
             temp: (item.main.temp - 273.15).toFixed(0),
-            imgUrl: getWeatherIcon(item.weather[0].icon),
+            imgUrl: getWeatherIcon(item.weather[0].icon, time.hour()),
           });
         });
 
