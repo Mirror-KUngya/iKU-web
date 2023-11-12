@@ -3,43 +3,50 @@ import {
   Image,
   Container,
   BottomContainer,
-  Input,
-  LoginButton,
   ButtonContainer,
   LinkButton,
 } from "./styles";
+import { usePostLogin } from "../../hooks";
 import { useNavigate } from "react-router-dom";
+import { AuthInput, Button } from "../../commonStyles";
 
 const LoginPage = () => {
   const navigate = useNavigate();
+
   const [userId, setUserID] = useState("");
   const [password, setPassword] = useState("");
 
+  const { mutate } = usePostLogin(userId, password);
+
   const handleLogin = () => {
-    navigate("/");
+    mutate();
   };
 
   return (
     <Container>
       <Image src={`${process.env.PUBLIC_URL}/logo.png`}></Image>
       <BottomContainer>
-        <Input
-          placeholder={"아이디 (이메일)"}
+        <AuthInput
+          placeholder={"아이디"}
           value={userId}
           type="email"
           onChange={(e) => setUserID(e.target.value)}
-        ></Input>
-        <Input
+        ></AuthInput>
+        <AuthInput
           placeholder={"비밀번호"}
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-        ></Input>
-        <LoginButton onClick={handleLogin}>로그인</LoginButton>
+        ></AuthInput>
+        <Button onClick={handleLogin}>로그인</Button>
         <ButtonContainer>
-          <LinkButton>아이디찾기</LinkButton>
+          <LinkButton onClick={() => navigate("/findId")}>
+            아이디찾기
+          </LinkButton>
           <LinkButton>|</LinkButton>
-          <LinkButton>비밀번호 변경</LinkButton>
+          <LinkButton onClick={() => navigate("/changePW")}>
+            비밀번호 변경
+          </LinkButton>
         </ButtonContainer>
       </BottomContainer>
     </Container>

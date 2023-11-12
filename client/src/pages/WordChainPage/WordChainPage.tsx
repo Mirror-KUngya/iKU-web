@@ -64,6 +64,7 @@ const WordChainPage = () => {
 
   useEffect(() => {
     getAnswerBySpeech();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

@@ -4,6 +4,7 @@ import {
   DailyMission,
   DateInfo,
   HourlyWeather,
+  LoginButton,
   WeatherInfo,
 } from "../../components";
 import {
@@ -61,6 +62,7 @@ const MainPage = () => {
   return (
     <Container>
       <HeaderText>{userName}님, 좋은 하루 입니다!</HeaderText>
+      <LoginButton />
       <Title>
         <span>{titleText.first}</span>
         {titleText.second}

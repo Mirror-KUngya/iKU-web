@@ -25,8 +25,8 @@ export const BottomContainer = styled.div`
 export const Input = styled.input`
   width: 90%;
   padding: 30px;
-  margin: 10px 0;
-  font-size: 3rem;
+  margin: 1rem 0;
+  font-size: 3.5rem;
   font-weight: bold;
   background-color: transparent;
   border: none;
@@ -35,17 +35,6 @@ export const Input = styled.input`
   &:-webkit-autofill {
     -webkit-box-shadow: 0 0 0 500px black inset !important;
   }
-`;
-
-export const LoginButton = styled.button`
-  width: 100%;
-  margin: 20px auto;
-  text-align: center;
-  font-size: 2.5rem;
-  font-weight: bold;
-  padding: 20px;
-  border-radius: 20px;
-  cursor: pointer;
 `;
 
 export const ButtonContainer = styled.div`
@@ -58,7 +47,7 @@ export const ButtonContainer = styled.div`
 export const LinkButton = styled.button`
   background-color: transparent;
   color: white;
-  font-size: 2.2rem;
+  font-size: 3rem;
   border: none;
   cursor: pointer;
   font-weight: bold;
