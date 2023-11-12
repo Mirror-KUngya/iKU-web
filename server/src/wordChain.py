@@ -3,6 +3,7 @@ from korean_word_relay import WordRelay
 import speech_recognition as sr
 import sys
 import random
+import time
 
 start_words = [
     "사과",
@@ -15,7 +16,6 @@ start_words = [
     "원숭이",
     "복숭아",
     "수박",
-    "박수",
     "포도",
     "양말",
     "치약",
@@ -49,7 +49,14 @@ count = 0
 
 print("count >" + str(count), flush=True)
 
+start_time = time.time()  # 프로그램 시작 시간
 while count < 3:
+    current_time = time.time()  # 현재 시간
+    if (current_time - start_time) > 60:  # 60초 초과 확인
+        print("mission failed", flush=True)
+        playsound("voice/mission_fail.mp3")
+        sys.exit()  # 프로그램 종료
+
     with mic as source:
         try:
             audio = r.listen(source, phrase_time_limit=3)
@@ -84,10 +91,10 @@ while count < 3:
 
         except Exception as e:  # 이어갈 단어가 없을 경우
             print(e, flush=True)
-            print("no word , you win!", flush=True)
+            print("no word , mission success", flush=True)
             break
 
-print("you win!", flush=True)
+print("mission success", flush=True)
 
 playsound("voice/wordChain_success.mp3")
 sys.exit()  # 프로그램 종료
