@@ -35,11 +35,10 @@ app.get("/detect/:mission", (req, res) => {
 
   pythonProcess.stdout.on("data", (data) => {
     const message = data.toString();
-
+    console.log(message);
     if (message.includes("loading")) {
       res.write(`data: ${JSON.stringify({ event: "loading" })}\n\n`);
     } else if (message.includes("Camera started")) {
-      // 카메라 시작 메시지를 처리합니다.
       console.log("Camera has started.");
       res.write(`data: ${JSON.stringify({ event: "camera-started" })}\n\n`);
     } else if (message.includes("mission")) {

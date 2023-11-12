@@ -47,24 +47,6 @@ start_time = time.time()  # 프로그램 시작 시간
 camera_started_flag = False  # 카메라 시작 플래그 초기화
 
 while True:
-    # ret, frame = cap.read()
-    # if not ret:
-    #     continue
-
-    # if not camera_started_flag:  # 카메라 시작 플래그를 체크합니다.
-    #     print("Camera started")  # 카메라가 시작되면 이 메시지를 출력합니다.
-    #     sys.stdout.flush()
-    #     camera_started_flag = True  # 플래그를 설정하여 메시지가 다시 출력되지 않도록 합니다.
-
-    # if time.time() - start_time > 5:  # 5초 후 종료 조건 검사
-    #     break
-
-    # # RGB로 변환
-    # rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-
-    # # 얼굴 랜드마크 감지
-    # results = face_mesh.process(rgb_frame)
-
     # Picamera2로부터 이미지 프레임 받아오기
     frame = picam2.capture_array()
     if frame is None:
@@ -72,7 +54,7 @@ while True:
         break
 
     if not camera_started_flag:  # 카메라 시작 플래그를 체크합니다.
-        print("Camera started")  # 카메라가 시작되면 이 메시지를 출력합니다.
+        print("Camera started", flush=True)  # 카메라가 시작되면 이 메시지를 출력합니다.
         sys.stdout.flush()
         camera_started_flag = True  # 플래그를 설정하여 메시지가 다시 출력되지 않도록 합니다.
 

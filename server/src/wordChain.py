@@ -25,21 +25,12 @@ start_words = [
     "국수",
 ]
 
-
-def is_valid_word(word, dictionary_file="data/korean5800.txt"):
-    with open(dictionary_file, "r") as file:
-        for line in file:
-            if word.lower() == line.strip().lower():
-                return True
-    return False
-
-
 num = random.randint(0, len(start_words) - 1)
 
 suggestion = start_words[num]
 print("suggestion >" + suggestion, flush=True)
 
-word_relay = WordRelay()
+word_relay = WordRelay(import_default=False, words_path="data/korean_words.txt")
 
 playsound("voice/wordChain_start.mp3")
 
@@ -66,9 +57,7 @@ while count < 3:
 
             print("result" + answer, flush=True)
 
-            is_continue = word_relay.check_continue(
-                suggestion, answer
-            ) and is_valid_word(answer)
+            is_continue = word_relay.check_continue(suggestion, answer)
             if is_continue:
                 print("answer >" + answer, flush=True)
                 count += 1
