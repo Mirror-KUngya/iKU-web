@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { MissionStatus, setMissions } from "../../utils";
+import { MissionStatus } from "../../utils";
 import {
   Container,
   CurrentStatusText,
@@ -17,8 +17,6 @@ const MissionClapPage = () => {
   useEffect(() => {
     //runClapPythonScript
     setClapCount(0);
-
-    setMissions(0, true);
 
     const eventSource = new EventSource(
       process.env.REACT_APP_API_ENDPOINT + "/detect/clap"
