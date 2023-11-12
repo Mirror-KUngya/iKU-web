@@ -111,6 +111,7 @@ app.get("/wordChain", (req, res) => {
           })}\n\n`
         );
       } else {
+        console.log(message);
         res.write(
           `data: ${JSON.stringify({ event: "not-answer", data: message })}\n\n`
         );

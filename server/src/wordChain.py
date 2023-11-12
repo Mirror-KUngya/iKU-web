@@ -25,6 +25,15 @@ start_words = [
     "국수",
 ]
 
+
+def is_valid_word(word, dictionary_file="data/korean5800.txt"):
+    with open(dictionary_file, "r") as file:
+        for line in file:
+            if word.lower() == line.strip().lower():
+                return True
+    return False
+
+
 num = random.randint(0, len(start_words) - 1)
 
 suggestion = start_words[num]
@@ -57,8 +66,9 @@ while count < 3:
 
             print("result" + answer, flush=True)
 
-            is_continue = word_relay.check_continue(suggestion, answer)
-
+            is_continue = word_relay.check_continue(
+                suggestion, answer
+            ) and is_valid_word(answer)
             if is_continue:
                 print("answer >" + answer, flush=True)
                 count += 1
@@ -84,6 +94,7 @@ while count < 3:
             print("timeout", flush=True)
 
         except Exception as e:  # 이어갈 단어가 없을 경우
+            print(e, flush=True)
             print("no word , you win!", flush=True)
             break
 
