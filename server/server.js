@@ -42,6 +42,7 @@ app.get("/detect/:mission", (req, res) => {
       console.log("Camera has started.");
       res.write(`data: ${JSON.stringify({ event: "camera-started" })}\n\n`);
     } else if (message.includes("mission")) {
+      // 미션 완료 후 성공 or 실패
       res.write(
         `data: ${JSON.stringify({ event: "result", data: message })}\n\n`
       );

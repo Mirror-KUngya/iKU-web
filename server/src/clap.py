@@ -169,6 +169,7 @@ while True:
 
     if elapsed_time >= 15:
         print("mission failed", flush=True)
+        playsound("voice/mission_fail.mp3")
         break
 
     # ESC 키를 누르면 종료합니다.

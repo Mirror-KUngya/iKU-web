@@ -147,6 +147,7 @@ while True:
     # 양쪽 옆구리 운동 횟수 각 3회 이상일 시 미션 완료 및 프로그램 종료
     if right_side_exercise_count >= 3 and left_side_exercise_count >= 3:
         print("mission success", flush=True)
+        playsound("voice/side_success.mp3")
         break
 
     current_time = time.time()
@@ -154,6 +155,7 @@ while True:
 
     if elapsed_time >= 30:
         print("mission failed", flush=True)
+        playsound("voice/mission_fail.mp3")
         break
 
     # 'q' 키를 누르면 종료
