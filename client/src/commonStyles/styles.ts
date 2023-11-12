@@ -9,25 +9,6 @@ export const Title = styled.h1`
   font-size: 3rem;
 `;
 
-export const Button = styled.div`
-  font-size: 1.8rem;
-  width: 150px;
-  height: 150px;
-  padding: 20px;
-  margin: 20px auto;
-  border-radius: 50%;
-  background-color: white;
-  text-align: center;
-  color: black;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  &:hover {
-    background-color: gray;
-  }
-`;
-
 export const MissionStatusText = styled.p`
   font-size: 2.8rem;
 `;
@@ -36,4 +17,30 @@ export const CurrentStatusText = styled.p`
   font-size: 2.3rem;
   color: lightcoral;
   min-height: 30px;
+`;
+
+export const Button = styled.button`
+  width: 90%;
+  margin: 2rem auto;
+  text-align: center;
+  font-size: 3.5rem;
+  font-weight: bold;
+  padding: 1.5rem;
+  border-radius: 20px;
+  cursor: pointer;
+`;
+
+export const AuthInput = styled.input`
+  width: 80%;
+  padding: 30px;
+  margin: 1rem 0;
+  font-size: 3.5rem;
+  font-weight: bold;
+  background-color: transparent;
+  border: none;
+  border-bottom: 3px solid white;
+  color: white;
+  &:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 500px black inset !important;
+  }
 `;

@@ -1,5 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import {
+  ChangePasswordPage,
+  FindIdPage,
   LoginPage,
   MainPage,
   MissionClapPage,
@@ -18,6 +20,8 @@ function App() {
         <Route path="/mission/side" element={<MissionSidePage />} />
         <Route path="/mission/smile" element={<MissionSmilePage />} />
         <Route path="/mission/wordChain" element={<WordChainPage />} />
+        <Route path="/findId" element={<FindIdPage />} />
+        <Route path="/changePW" element={<ChangePasswordPage />} />
       </Routes>
     </BrowserRouter>
   );
