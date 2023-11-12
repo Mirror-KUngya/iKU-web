@@ -6,7 +6,7 @@ import { FaPersonWalking } from "react-icons/fa6";
 // import moment from "moment";
 
 const DailyMission = () => {
-  const [dailyMission, setDailyMission] = useState([
+  const [dailyMission] = useState([
     {
       title: "박수 치기",
       name: "clap",
