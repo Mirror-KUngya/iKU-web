@@ -76,7 +76,6 @@ app.get("/wordChain", (req, res) => {
 
   pythonProcess.stdout.on("data", (data) => {
     const messages = data.toString().split("\n");
-
     messages.forEach((message) => {
       if (message.includes("Recognition Start")) {
       } else if (message.includes("answer")) {
@@ -109,8 +108,14 @@ app.get("/wordChain", (req, res) => {
             event: "no-word-win",
           })}\n\n`
         );
+      } else if (message.includes("mission")) {
+        res.write(
+          `data: ${JSON.stringify({
+            event: "result",
+            data: message,
+          })}\n\n`
+        );
       } else {
-        console.log(message);
         res.write(
           `data: ${JSON.stringify({ event: "not-answer", data: message })}\n\n`
         );

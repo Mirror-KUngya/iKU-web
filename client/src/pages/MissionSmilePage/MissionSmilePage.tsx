@@ -7,12 +7,15 @@ import {
 } from "../../commonStyles";
 import { MissionInfo } from "../../components";
 import { useNavigate } from "react-router-dom";
+import { usePutMission } from "../../hooks";
 
 const MissionSmilePage = () => {
   const navigate = useNavigate();
   const [status, setStatus] = useState(MissionStatus.DEFAULT);
   const [smileStatus, setSmileStatus] = useState(false);
   const [missionResult, setMissionResult] = useState(false);
+
+  const { mutate } = usePutMission("Smile");
 
   useEffect(() => {
     //runSmilePythonScript
@@ -49,6 +52,11 @@ const MissionSmilePage = () => {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (missionResult) mutate();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [missionResult]);
 
   return (
     <Container>

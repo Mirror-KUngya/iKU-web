@@ -7,3 +7,4 @@ export const instance = axios.create({
 export * from "./postSignIn";
 export * from "./postFindId";
 export * from "./postChangePW";
+export * from "./putMissions";

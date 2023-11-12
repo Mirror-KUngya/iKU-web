@@ -11,6 +11,7 @@ import {
   WordText,
 } from "./styles";
 import { useNavigate } from "react-router-dom";
+import { usePutMission } from "../../hooks";
 
 const turnType = {
   미러: "미러",
@@ -24,8 +25,11 @@ const WordChainPage = () => {
   const [answer, setAnswer] = useState("");
   const [turn, setTurn] = useState(turnType.미러);
   const [currentCount, setCurrentCount] = useState(0);
+  const [missionResult, setMissionResult] = useState(false);
   const [noWordWin, setNoWordWin] = useState(false); // 이어갈 단어가 없는 경우 :유저 승리
   const GOAL_COUNT = 3;
+
+  const { mutate } = usePutMission("WordChain");
 
   const getAnswerBySpeech = () => {
     const eventSource = new EventSource(
@@ -50,10 +54,14 @@ const WordChainPage = () => {
       } else if (data.event === "no-word-win") {
         setNoWordWin(true);
         setCurrentCount(GOAL_COUNT);
+        setMissionResult(true);
+      } else if (data.event === "result") {
+        if (data.data.includes("success")) {
+          setMissionResult(true);
+        } else if (data.data.includes("failed")) setMissionResult(false);
       } else if (data.event === "close") {
         eventSource.close();
         navigate("/");
-      } else {
       }
     };
     eventSource.onerror = (error) => {
@@ -61,6 +69,11 @@ const WordChainPage = () => {
       eventSource.close(); // 에러 발생시 연결을 닫습니다.
     };
   };
+
+  useEffect(() => {
+    if (missionResult) mutate();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [missionResult]);
 
   useEffect(() => {
     getAnswerBySpeech();

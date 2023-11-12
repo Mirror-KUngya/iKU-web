@@ -7,12 +7,15 @@ import {
 } from "../../commonStyles";
 import { MissionInfo } from "../../components";
 import { useNavigate } from "react-router-dom";
+import { usePutMission } from "../../hooks";
 
 const MissionClapPage = () => {
   const navigate = useNavigate();
   const [status, setStatus] = useState(MissionStatus.DEFAULT);
   const [missionResult, setMissionResult] = useState(false);
   const [clapCount, setClapCount] = useState(0);
+
+  const { mutate } = usePutMission("Clap");
 
   useEffect(() => {
     //runClapPythonScript
@@ -35,8 +38,10 @@ const MissionClapPage = () => {
           setClapCount((prev) => prev - 1);
         if (data.data.includes("mission")) {
           setStatus(MissionStatus.END);
-          if (data.data.includes("success")) setMissionResult(true);
-          else if (data.data.includes("failed")) setMissionResult(false);
+          if (data.data.includes("success")) {
+            setMissionResult(true);
+            mutate();
+          } else if (data.data.includes("failed")) setMissionResult(false);
         }
       } else if (data.event === "close") {
         eventSource.close();
@@ -57,9 +62,13 @@ const MissionClapPage = () => {
       setMissionResult(true);
       navigate("/");
     }
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [clapCount]);
+
+  useEffect(() => {
+    if (missionResult) mutate();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [missionResult]);
 
   return (
     <Container>

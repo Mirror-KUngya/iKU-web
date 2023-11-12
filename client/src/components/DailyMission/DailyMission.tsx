@@ -4,16 +4,14 @@ import { DailyMissionItem } from "../DailyMissionItem";
 import { FaPersonWalking } from "react-icons/fa6";
 import { useGetMissions } from "../../hooks/getMissions";
 import { Missions } from "../../types";
-import moment from "moment";
 
 const DailyMission = () => {
-  const UserID = "aaa1";
-  const MissionDate = moment().format("YYYY-MM-DD");
-
-  const { mutate, data } = useGetMissions(UserID, MissionDate);
+  const { mutate, data } = useGetMissions();
 
   useEffect(() => {
     mutate();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -24,18 +22,20 @@ const DailyMission = () => {
 
       setDailyMission(updatedMissions);
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
   const [dailyMission, setDailyMission] = useState([
     {
       title: "박수 치기",
       name: "Clap",
-      fulfilled: data ? data.Clap : false,
+      fulfilled: false,
     },
     {
       title: "활짝 웃기",
       name: "Smile",
-      fulfilled: data ? data.Smile : false,
+      fulfilled: false,
     },
     {
       title: "옆구리 운동",

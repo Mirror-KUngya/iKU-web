@@ -7,6 +7,7 @@ import {
 } from "../../commonStyles";
 import { MissionInfo } from "../../components";
 import { useNavigate } from "react-router-dom";
+import { usePutMission } from "../../hooks";
 
 const MissionSidePage = () => {
   const navigate = useNavigate();
@@ -14,6 +15,8 @@ const MissionSidePage = () => {
   const [leftCount, setLeftCount] = useState(0);
   const [rightCount, setRightCount] = useState(0);
   const [missionResult, setMissionResult] = useState(false);
+
+  const { mutate } = usePutMission("Exercise");
 
   useEffect(() => {
     // runSidePytonScript
@@ -51,9 +54,10 @@ const MissionSidePage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // useEffect(() => {
-  //   if (leftCount >= 2 && rightCount >= 2) setMissionResult(true);
-  // }, [leftCount, rightCount]);
+  useEffect(() => {
+    if (missionResult) mutate();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [missionResult]);
 
   return (
     <Container>
