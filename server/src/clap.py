@@ -156,7 +156,7 @@ while True:
     )
 
     # 화면에 결과를 표시합니다.
-    # cv2.imshow("MediaPipe Pose", image_rgb)
+    cv2.imshow("MediaPipe Pose", image_rgb)
 
     # 박수 3회 이상일 시 미션 완료 및 프로그램 종료
     if clap_count >= 3:

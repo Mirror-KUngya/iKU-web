@@ -144,8 +144,8 @@ while True:
     # 화면에 이미지 표시
     cv2.imshow("MediaPipe Pose", image_rgb)
 
-    # 양쪽 옆구리 운동 횟수 각 3회 이상일 시 미션 완료 및 프로그램 종료
-    if right_side_exercise_count >= 3 and left_side_exercise_count >= 3:
+    # 양쪽 옆구리 운동 횟수 각 2회 이상일 시 미션 완료 및 프로그램 종료
+    if right_side_exercise_count >= 2 and left_side_exercise_count >= 2:
         print("mission success", flush=True)
         playsound("voice/side_success.mp3")
         break
