@@ -6,3 +6,4 @@ export * from "./WeatherInfo";
 export * from "./MissionInfo";
 export * from "./HourlyWeather";
 export * from "./LoginButton";
+export * from "./UserName";

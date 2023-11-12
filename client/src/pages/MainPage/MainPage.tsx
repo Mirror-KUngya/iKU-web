@@ -5,20 +5,13 @@ import {
   DateInfo,
   HourlyWeather,
   LoginButton,
+  UserName,
   WeatherInfo,
 } from "../../components";
-import {
-  Container,
-  Description,
-  HeaderText,
-  Line,
-  RowContainer,
-  Title,
-} from "./styles";
+import { Container, Description, Line, RowContainer, Title } from "./styles";
 import { useEffect, useState } from "react";
 
 const MainPage = () => {
-  const userName = "김건국";
   const navigate = useNavigate();
 
   const [titleText, setTitleText] = useState({ first: "", second: "" });
@@ -61,7 +54,7 @@ const MainPage = () => {
 
   return (
     <Container>
-      <HeaderText>{userName}님, 좋은 하루 입니다!</HeaderText>
+      <UserName />
       <LoginButton />
       <Title>
         <span>{titleText.first}</span>

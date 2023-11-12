@@ -8,3 +8,4 @@ export * from "./postSignIn";
 export * from "./postFindId";
 export * from "./postChangePW";
 export * from "./putMissions";
+export * from "./getUserName";

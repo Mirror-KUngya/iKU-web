@@ -28,12 +28,6 @@ const RowContainer = styled.div`
   justify-content: space-between;
 `;
 
-const HeaderText = styled.h1`
-  font-size: 2.5rem;
-  color: lightgray;
-  margin: 0;
-`;
-
 const Title = styled.h1`
   font-size: 3.5rem;
   text-align: center;
@@ -54,12 +48,4 @@ const Line = styled.div`
   margin: 10% 0;
   background-color: lightgray;
 `;
-export {
-  Container,
-  Button,
-  RowContainer,
-  HeaderText,
-  Title,
-  Description,
-  Line,
-};
+export { Container, Button, RowContainer, Title, Description, Line };
