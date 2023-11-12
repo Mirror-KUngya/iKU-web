@@ -15,6 +15,7 @@ const WheatherInfo = () => {
       try {
         const { weather, main } = await getCurrentLocationWeather();
         setLoading(false);
+        console.log(weather[0].main); // 영어 날씨 -> 체크리스트 기준
         setWeatherDescription(weather[0].description);
         setIconUrl(getWeatherIcon(weather[0].icon));
         setTemp(main.temp - 273.15);

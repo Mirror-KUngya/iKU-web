@@ -10,16 +10,16 @@ export const Container = styled.div`
 `;
 
 export const Icon = styled.img`
-  height: 120px;
-  width: 120px;
+  height: 130px;
+  width: 130px;
   margin: 10px 0;
 `;
 
 export const Text = styled.p`
-  font-size: 2.5rem;
+  font-size: 2.7rem;
   font-weight: 900;
   text-align: center;
-  margin: 20px 0 0 0;
+  margin: 20px 0 10px 0;
 `;
 
 const rotate = keyframes`

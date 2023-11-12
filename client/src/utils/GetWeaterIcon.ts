@@ -1,10 +1,8 @@
 const getWeatherIcon = (original: string, hour = new Date().getHours()) => {
-  console.log(original, hour);
   const dayOrNight = hour >= 6 && hour <= 18 ? "day" : "night";
 
   const defaultIcon = `${process.env.PUBLIC_URL}/weatherIcons/weather01.png`;
   const match = original.match(/^(\d+)/);
-  console.log(match);
 
   if (match) {
     if (dayOrNight === "day") {
