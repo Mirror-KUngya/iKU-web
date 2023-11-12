@@ -6,8 +6,10 @@ import {
   MissionStatusText,
 } from "../../commonStyles";
 import { MissionInfo } from "../../components";
+import { useNavigate } from "react-router-dom";
 
 const MissionSidePage = () => {
+  const navigate = useNavigate();
   const [status, setStatus] = useState(MissionStatus.DEFAULT);
   const [leftCount, setLeftCount] = useState(0);
   const [rightCount, setRightCount] = useState(0);
@@ -29,11 +31,14 @@ const MissionSidePage = () => {
       } else if (data.event === "camera-started") {
         setStatus(MissionStatus.RUNNING);
       } else if (data.event === "result") {
-        if (data.data.trim() === "left") setLeftCount((cur) => cur + 1);
-        else if (data.data.trim() === "right") setRightCount((cur) => cur + 1);
+        if (data.data.includes("left")) setLeftCount((cur) => cur + 1);
+        else if (data.data.includes("right")) setRightCount((cur) => cur + 1);
+        else if (data.data.includes("success")) setMissionResult(true);
+        else if (data.data.includes("failed")) setMissionResult(false);
       } else if (data.event === "close") {
         eventSource.close();
         setStatus(MissionStatus.END);
+        navigate("/");
       }
     };
 
@@ -44,9 +49,9 @@ const MissionSidePage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => {
-    if (leftCount >= 2 && rightCount >= 2) setMissionResult(true);
-  }, [leftCount, rightCount]);
+  // useEffect(() => {
+  //   if (leftCount >= 2 && rightCount >= 2) setMissionResult(true);
+  // }, [leftCount, rightCount]);
 
   return (
     <Container>

@@ -30,12 +30,11 @@ const MissionSmilePage = () => {
       } else if (data.event === "camera-started") {
         setStatus(MissionStatus.RUNNING);
       } else if (data.event === "result") {
-        if (data.data.includes("smile")) {
-          setSmileStatus(true);
-        } else setSmileStatus(false);
-        if (data.data.includes("mission success")) {
-          setMissionResult(true);
-          navigate("/");
+        if (data.data.includes("smile")) setSmileStatus(true);
+        else if (data.data.includes("not")) setSmileStatus(false);
+        if (data.data.includes("mission")) {
+          if (data.data.includes("success")) setMissionResult(true);
+          else if (data.data.includes("failed")) setMissionResult(false);
         }
       } else if (data.event === "close") {
         eventSource.close();
