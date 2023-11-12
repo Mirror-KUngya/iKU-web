@@ -74,7 +74,10 @@ const FindIdPage = () => {
                 iKU 앱을 통해<br></br>
                 회원가입을 진행해주세요.<br></br>
               </Description>
-              <Button onClick={() => history.go(-1)} style={{ width: "80%" }}>
+              <Button
+                onClick={() => window.history.go(-1)}
+                style={{ width: "80%" }}
+              >
                 이전 페이지로
               </Button>
             </>
