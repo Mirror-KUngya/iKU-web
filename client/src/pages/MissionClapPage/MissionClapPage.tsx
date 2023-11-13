@@ -57,13 +57,13 @@ const MissionClapPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => {
-    if (clapCount >= 3) {
-      setMissionResult(true);
-      navigate("/");
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [clapCount]);
+  // useEffect(() => {
+  //   if (clapCount >= 3) {
+  //     setMissionResult(true);
+  //     navigate("/");
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [clapCount]);
 
   useEffect(() => {
     if (missionResult) mutate();
@@ -74,7 +74,7 @@ const MissionClapPage = () => {
     <Container>
       <MissionInfo
         title="박수치기"
-        description={`그림과 같이 거울을 정면으로 보고\n박수를 3번 크게 쳐주세요!`}
+        description={`그림과 같이 거울을 정면으로 보고\n박수를 3번 천천히 쳐주세요!`}
         images={[`${process.env.PUBLIC_URL}/image/clap.gif`]}
       />
       <MissionStatusText>
@@ -87,7 +87,6 @@ const MissionClapPage = () => {
           : status === MissionStatus.END
           ? ` 미션 ${missionResult ? "성공!" : "실패"}`
           : ""}
-        {/* : "에러 발생, 네트워크를 확인해주세요. "} */}
       </MissionStatusText>
       <CurrentStatusText>박수 횟수 : {clapCount}</CurrentStatusText>
     </Container>

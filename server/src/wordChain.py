@@ -59,10 +59,13 @@ while count < 3:
 
     with mic as source:
         try:
+            print("Say Anything!", flush=True)  # 인식 시작
             audio = r.listen(source, phrase_time_limit=3)
             answer = r.recognize_google(audio, language="ko-KR")
 
             print("result" + answer, flush=True)
+
+            print("In Progress...", flush=True)  # 처리 시작
 
             is_continue = word_relay.check_continue(suggestion, answer)
             if is_continue:

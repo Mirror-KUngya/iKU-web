@@ -77,7 +77,10 @@ app.get("/wordChain", (req, res) => {
   pythonProcess.stdout.on("data", (data) => {
     const messages = data.toString().split("\n");
     messages.forEach((message) => {
-      if (message.includes("Recognition Start")) {
+      if (message.includes("Say Anything!")) {
+        res.write(`data: ${JSON.stringify({ event: "say" })}\n\n`);
+      } else if (message.includes("In Progress...")) {
+        res.write(`data: ${JSON.stringify({ event: "do-not-say" })}\n\n`);
       } else if (message.includes("answer")) {
         const answerMessage = message.split(">");
         res.write(

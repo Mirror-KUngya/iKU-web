@@ -12,6 +12,8 @@ import {
 } from "./styles";
 import { useNavigate } from "react-router-dom";
 import { usePutMission } from "../../hooks";
+import { TiMicrophone } from "react-icons/ti";
+import { BiLoader } from "react-icons/bi";
 
 const turnType = {
   미러: "미러",
@@ -28,6 +30,7 @@ const WordChainPage = () => {
   const [missionResult, setMissionResult] = useState(false);
   const [noWordWin, setNoWordWin] = useState(false); // 이어갈 단어가 없는 경우 :유저 승리
   const GOAL_COUNT = 3;
+  const [saying, setSaying] = useState(false);
 
   const { mutate } = usePutMission("WordChain");
 
@@ -44,6 +47,10 @@ const WordChainPage = () => {
         setAnswer(data.data);
         setRecord((record) => `${record} - ${data.data}`);
         setTurn(turnType.사용자);
+      } else if (data.event === "say") {
+        setSaying(true);
+      } else if (data.event === "do-not-say") {
+        setSaying(false);
       } else if (data.event === "suggestion") {
         console.log(data.data);
         setSuggestion(data.data);
@@ -95,6 +102,8 @@ const WordChainPage = () => {
           ? "마지막 한번! 조금만 힘내세요!"
           : "축하합니다. 끝말잇기 미션 성공했습니다."}
       </DescriptionCountContainer>
+
+      {saying ? <TiMicrophone size={"3rem"} /> : <BiLoader size={"3rem"} />}
       <RecordText>
         <span>[기록] </span>
         {record}

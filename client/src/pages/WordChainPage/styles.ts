@@ -15,9 +15,9 @@ export const WordContainer = styled.div`
 `;
 
 export const RecordText = styled.p`
-  font-size: 3rem;
+  font-size: 3.5rem;
   margin: 3rem 0;
-  color: gray;
+  color: lightGray;
   span {
     color: lightslategray;
   }

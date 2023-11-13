@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { PiCheckFatFill } from "react-icons/pi";
 
 const CheckList = () => {
+  // const [checkLists, setCheckLists] = useState<string[]>([]);
   const [checkLists, setCheckLists] = useState([
     "가스 벨브 잠그기",
     "지팡이 챙기기",
@@ -24,6 +25,36 @@ const CheckList = () => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [getCheckList()]);
+  // const { mutate, data } = useGetCheckList();
+
+  // useEffect(() => {
+  //   mutate();
+
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
+
+  // useEffect(() => {
+  //   let tempArr: string[] = [];
+  //   if (data) {
+  //     data.forEach((item) => {
+  //       tempArr.push(item.toDo);
+  //     });
+
+  // if (getCheckList().length > 0) {
+  //   let tempArr.push();
+  //   tempList = tempList.slice(0, CHECK_LIST_COUNT);
+  //   tempList[CHECK_LIST_COUNT] = getCheckList();
+  //   setCheckLists(tempList);
+  // }
+  //   setCheckLists(tempArr);
+  // }
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [data]);
+
+  // useEffect(() => {
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [getCheckList()]);
 
   return (
     <Container>

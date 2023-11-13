@@ -10,3 +10,4 @@ export * from "./postChangePW";
 export * from "./putMissions";
 export * from "./getUserName";
 export * from "./postCheckList";
+export * from "./getCheckList";
