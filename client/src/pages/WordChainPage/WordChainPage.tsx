@@ -93,6 +93,8 @@ const WordChainPage = () => {
         title="끝말잇기"
         description={`iKU와 함께하는 끝말잇기 게임`}
       />
+      {saying ? <TiMicrophone size={"3rem"} /> : <BiLoader size={"3rem"} />}
+
       <DescriptionCountContainer>
         {currentCount === GOAL_COUNT - 3
           ? "3번 승리하면 성공이에요!"
@@ -103,7 +105,6 @@ const WordChainPage = () => {
           : "축하합니다. 끝말잇기 미션 성공했습니다."}
       </DescriptionCountContainer>
 
-      {saying ? <TiMicrophone size={"3rem"} /> : <BiLoader size={"3rem"} />}
       <RecordText>
         <span>[기록] </span>
         {record}
