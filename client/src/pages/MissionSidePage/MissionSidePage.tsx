@@ -5,7 +5,7 @@ import {
   CurrentStatusText,
   MissionStatusText,
 } from "../../commonStyles";
-import { MissionInfo } from "../../components";
+import { MissionInfo, TimeOutInfo } from "../../components";
 import { useNavigate } from "react-router-dom";
 import { usePutMission } from "../../hooks";
 
@@ -17,6 +17,8 @@ const MissionSidePage = () => {
   const [missionResult, setMissionResult] = useState(false);
 
   const { mutate } = usePutMission("Exercise");
+
+  const MISSION_TIME = 30;
 
   useEffect(() => {
     // runSidePytonScript
@@ -79,6 +81,8 @@ const MissionSidePage = () => {
       </MissionStatusText>
       <CurrentStatusText>왼쪽 횟수 : {leftCount}</CurrentStatusText>
       <CurrentStatusText>오른쪽 횟수 : {rightCount}</CurrentStatusText>
+
+      <TimeOutInfo sec={MISSION_TIME} />
     </Container>
   );
 };

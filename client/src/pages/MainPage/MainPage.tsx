@@ -70,7 +70,7 @@ const MainPage = () => {
       {recognizing && (
         <Description>예시 - 박수, 스마일, 옆구리, 끝말잇기</Description>
       )}
-      {saying ? <TiMicrophone size={"3rem"} /> : <BiLoader size={"3rem"} />}
+      {saying ? <TiMicrophone size={"4rem"} /> : <BiLoader size={"4rem"} />}
       <RowContainer>
         <CheckList />
         <DailyMission />

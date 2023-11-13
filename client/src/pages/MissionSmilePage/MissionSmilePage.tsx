@@ -5,7 +5,7 @@ import {
   CurrentStatusText,
   MissionStatusText,
 } from "../../commonStyles";
-import { MissionInfo } from "../../components";
+import { MissionInfo, TimeOutInfo } from "../../components";
 import { useNavigate } from "react-router-dom";
 import { usePutMission } from "../../hooks";
 
@@ -16,6 +16,8 @@ const MissionSmilePage = () => {
   const [missionResult, setMissionResult] = useState(false);
 
   const { mutate } = usePutMission("Smile");
+
+  const MISSION_TIME = 15;
 
   useEffect(() => {
     //runSmilePythonScript
@@ -80,6 +82,8 @@ const MissionSmilePage = () => {
         {status !== MissionStatus.DEFAULT &&
           (smileStatus ? "웃고 있어요 ^^" : "다시 웃어보세요 ~")}
       </CurrentStatusText>
+
+      <TimeOutInfo sec={MISSION_TIME} />
     </Container>
   );
 };

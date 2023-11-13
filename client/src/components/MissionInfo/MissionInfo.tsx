@@ -10,12 +10,13 @@ const MissionInfo = ({ title, description, images }: MissionInfoProps) => {
     <>
       <Title>{title}</Title>
       <Description>{description}</Description>
-      <ImageWrapper>
-        {images &&
-          images.map((img, idx) => {
+      {images && (
+        <ImageWrapper>
+          {images.map((img, idx) => {
             return <Image src={img} key={idx} />;
           })}
-      </ImageWrapper>
+        </ImageWrapper>
+      )}
     </>
   );
 };

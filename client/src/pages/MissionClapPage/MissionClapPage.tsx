@@ -5,7 +5,7 @@ import {
   CurrentStatusText,
   MissionStatusText,
 } from "../../commonStyles";
-import { MissionInfo } from "../../components";
+import { MissionInfo, TimeOutInfo } from "../../components";
 import { useNavigate } from "react-router-dom";
 import { usePutMission } from "../../hooks";
 
@@ -16,6 +16,8 @@ const MissionClapPage = () => {
   const [clapCount, setClapCount] = useState(0);
 
   const { mutate } = usePutMission("Clap");
+
+  const MISSION_TIME = 15;
 
   useEffect(() => {
     //runClapPythonScript
@@ -89,6 +91,7 @@ const MissionClapPage = () => {
           : ""}
       </MissionStatusText>
       <CurrentStatusText>박수 횟수 : {clapCount}</CurrentStatusText>
+      <TimeOutInfo sec={MISSION_TIME} />
     </Container>
   );
 };

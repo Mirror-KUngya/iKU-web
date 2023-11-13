@@ -7,7 +7,7 @@ export const Title = styled.h1`
 export const Description = styled.p`
   font-size: 4rem;
   font-weight: bold;
-  margin: 60px auto;
+  margin: 100px auto;
   white-space: pre-line;
 `;
 

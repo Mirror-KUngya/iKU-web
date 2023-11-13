@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { MissionInfo } from "../../components";
+import { MissionInfo, TimeOutInfo } from "../../components";
 import {
   Container,
   CountContainer,
@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 import { usePutMission } from "../../hooks";
 import { TiMicrophone } from "react-icons/ti";
 import { BiLoader } from "react-icons/bi";
+import { MissionStatusText } from "../../commonStyles";
 
 const turnType = {
   미러: "미러",
@@ -29,8 +30,10 @@ const WordChainPage = () => {
   const [currentCount, setCurrentCount] = useState(0);
   const [missionResult, setMissionResult] = useState(false);
   const [noWordWin, setNoWordWin] = useState(false); // 이어갈 단어가 없는 경우 :유저 승리
-  const GOAL_COUNT = 3;
   const [saying, setSaying] = useState(false);
+
+  const GOAL_COUNT = 3;
+  const MISSION_TIME = 60;
 
   const { mutate } = usePutMission("WordChain");
 
@@ -93,7 +96,7 @@ const WordChainPage = () => {
         title="끝말잇기"
         description={`iKU와 함께하는 끝말잇기 게임`}
       />
-      {saying ? <TiMicrophone size={"3rem"} /> : <BiLoader size={"3rem"} />}
+      {saying ? <TiMicrophone size={"4rem"} /> : <BiLoader size={"4rem"} />}
 
       <DescriptionCountContainer>
         {currentCount === GOAL_COUNT - 3
@@ -117,6 +120,8 @@ const WordChainPage = () => {
         <DescriptionContainer>
           거울이 더 이상 아는 단어가 없어서 끝말잇기를 종료합니다
         </DescriptionContainer>
+      ) : missionResult ? (
+        <MissionStatusText>미션 성공!</MissionStatusText>
       ) : (
         <>
           <DescriptionContainer>
@@ -128,6 +133,7 @@ const WordChainPage = () => {
           </CountContainer>
         </>
       )}
+      <TimeOutInfo sec={MISSION_TIME} />
     </Container>
   );
 };
