@@ -27,7 +27,6 @@ const WheatherInfo = () => {
   }, []);
 
   useEffect(() => {
-    console.log("temp : ", temp);
     let content = "";
     if (temp >= 28) content = "반팔, 반바지를 추천드려요.";
     else if (temp >= 23) content = "반팔, 얇은 셔츠, 면바지를 추천드려요.";
