@@ -57,6 +57,7 @@ start_time = time.time()  # 프로그램 시작 시간
 while count < 3:
     current_time = time.time()  # 현재 시간
     if (current_time - start_time) > 60:  # 60초 초과 확인
+        print("timeout", flush=True)
         print("mission failed", flush=True)
         playsound("voice/mission_fail.mp3")
         sys.exit()  # 프로그램 종료

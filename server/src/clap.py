@@ -168,6 +168,7 @@ while True:
     elapsed_time = current_time - start_time  # 프로그램 총 경과 시간 계산
 
     if elapsed_time >= 15:
+        print("timeout", flush=True)
         print("mission failed", flush=True)
         playsound("voice/mission_fail.mp3")
         break
