@@ -74,7 +74,7 @@ const MissionClapPage = () => {
     <Container>
       <MissionInfo
         title="박수치기"
-        description={`그림과 같이 거울을 정면으로 보고\n박수를 3번 천천히 쳐주세요!`}
+        description={`그림과 같이\n박수를 3번 천천히 쳐주세요!`}
         images={[`${process.env.PUBLIC_URL}/image/clap.gif`]}
       />
       <MissionStatusText>

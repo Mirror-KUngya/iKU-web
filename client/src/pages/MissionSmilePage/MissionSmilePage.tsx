@@ -62,7 +62,7 @@ const MissionSmilePage = () => {
     <Container>
       <MissionInfo
         title="웃기"
-        description={`그림과 같이 거울을 정면으로 보고\n5초 이상 활짝 웃어 주세요!`}
+        description={`거울에 가까이 와서\n5초 이상 활짝 웃어 주세요!`}
         images={[`${process.env.PUBLIC_URL}/image/smile.gif`]}
       />
       <MissionStatusText>

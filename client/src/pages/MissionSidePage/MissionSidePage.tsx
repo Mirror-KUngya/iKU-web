@@ -63,7 +63,7 @@ const MissionSidePage = () => {
     <Container>
       <MissionInfo
         title="옆구리 운동"
-        description={`그림과 같이 거울을 정면으로 보고\n왼쪽 2번, 오른쪽 2번씩 각각 옆구리 운동을 해주세요!`}
+        description={`그림과 같이 왼쪽 2번, 오른쪽 2번씩\n옆구리 운동을 해주세요!`}
         images={[`${process.env.PUBLIC_URL}/image/side.gif`]}
       />
       <MissionStatusText>
