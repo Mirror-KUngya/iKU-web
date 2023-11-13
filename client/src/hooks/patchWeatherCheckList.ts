@@ -37,7 +37,7 @@ let checkListContent = "";
 
 export const CHECK_LIST_COUNT = 3;
 
-export const usePatchWeatherCheckList = (content: string) => {
+export const patchWeatherCheckList = (content: string) => {
   checkListContent = content;
 };
 

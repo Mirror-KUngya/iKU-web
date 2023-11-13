@@ -3,7 +3,7 @@ import { getCurrentLocationWeather } from "../../utils";
 import { Container, Icon, Loading, Text } from "./styles";
 import { getWeatherIcon } from "../../utils";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
-import { usePatchWeatherCheckList } from "../../hooks/patchWeatherCheckList";
+import { patchWeatherCheckList } from "../../hooks/patchWeatherCheckList";
 
 const WheatherInfo = () => {
   const [loading, setLoading] = useState(true);
@@ -39,7 +39,7 @@ const WheatherInfo = () => {
     else if (temp < 5)
       content = "패딩, 두거운 코트, 누빔 옷, 기모, 목도리를 추천드려요.";
 
-    usePatchWeatherCheckList(content);
+    patchWeatherCheckList(content);
   }, [temp]);
 
   return (
