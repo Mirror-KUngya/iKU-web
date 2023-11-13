@@ -145,36 +145,44 @@ app.get("/speechRecognition", (req, res) => {
   pythonProcess = spawn("python3", [`src/speechRecognition.py`]);
 
   pythonProcess.stdout.on("data", (data) => {
-    const message = data.toString();
+    const messages = data.toString().split("\n");
 
-    if (message.includes("Recognition Start")) {
-      // 음성인식 시작 후 키워드 "거울아"를 기다립니다.
-      res.write(
-        `data: ${JSON.stringify({ event: "recognition-started" })}\n\n`
-      );
-    } else if (message.includes("Routing Start")) {
-      res.write(
-        `data: ${JSON.stringify({ event: "routing-start", data: message })}\n\n`
-      );
-    } else if (message.includes("is defined function")) {
-      const resultMessage = message.split(">");
+    messages.forEach((message) => {
+      if (message.includes("Say Anything!")) {
+        res.write(`data: ${JSON.stringify({ event: "say" })}\n\n`);
+      } else if (message.includes("In Progress...")) {
+        res.write(`data: ${JSON.stringify({ event: "do-not-say" })}\n\n`);
+      } else if (message.includes("Recognition Start")) {
+        // 음성인식 시작 후 키워드 "거울아"를 기다립니다.
+        res.write(
+          `data: ${JSON.stringify({ event: "recognition-started" })}\n\n`
+        );
+      } else if (message.includes("Routing Start")) {
+        res.write(
+          `data: ${JSON.stringify({
+            event: "routing-start",
+          })}\n\n`
+        );
+      } else if (message.includes("is defined function")) {
+        const resultMessage = message.split(">");
 
-      res.write(
-        `data: ${JSON.stringify({
-          event: "routing",
-          data: resultMessage[0],
-        })}\n\n`
-      );
-    } else if (message.includes("is not defined function")) {
-      const resultMessage = message.split(">");
-      console.log(resultMessage);
-      res.write(
-        `data: ${JSON.stringify({
-          event: "routing-failed",
-          data: resultMessage[0],
-        })}\n\n`
-      );
-    }
+        res.write(
+          `data: ${JSON.stringify({
+            event: "routing",
+            data: resultMessage[0],
+          })}\n\n`
+        );
+      } else if (message.includes("is not defined function")) {
+        const resultMessage = message.split(">");
+        console.log(resultMessage);
+        res.write(
+          `data: ${JSON.stringify({
+            event: "routing-failed",
+            data: resultMessage[0],
+          })}\n\n`
+        );
+      }
+    });
   });
 
   pythonProcess.stderr.on("data", (data) => {

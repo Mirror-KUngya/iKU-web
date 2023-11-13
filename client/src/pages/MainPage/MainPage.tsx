@@ -10,11 +10,14 @@ import {
 } from "../../components";
 import { Container, Description, Line, RowContainer, Title } from "./styles";
 import { useEffect, useState } from "react";
+import { TiMicrophone } from "react-icons/ti";
+import { BiLoader } from "react-icons/bi";
 
 const MainPage = () => {
   const navigate = useNavigate();
 
   const [titleText, setTitleText] = useState({ first: "", second: "" });
+  const [saying, setSaying] = useState(false);
   const [recognizing, setRecognizing] = useState(false);
 
   useEffect(() => {
@@ -30,6 +33,10 @@ const MainPage = () => {
           first: `"거울아"`,
           second: ` 로 거울을 불러보세요!`,
         });
+      } else if (data.event === "say") {
+        setSaying(true);
+      } else if (data.event === "do-not-say") {
+        setSaying(false);
       } else if (data.event === "routing-start") {
         setTitleText({ first: "", second: `원하는 미션을 말해주세요` });
         setRecognizing(true);
@@ -63,6 +70,7 @@ const MainPage = () => {
       {recognizing && (
         <Description>예시 - 박수, 스마일, 옆구리, 끝말잇기</Description>
       )}
+      {saying ? <TiMicrophone size={"3rem"} /> : <BiLoader size={"3rem"} />}
       <RowContainer>
         <CheckList />
         <DailyMission />

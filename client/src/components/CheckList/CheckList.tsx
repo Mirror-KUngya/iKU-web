@@ -1,13 +1,27 @@
+import {
+  CHECK_LIST_COUNT,
+  getCheckList,
+} from "../../hooks/patchWeatherCheckList";
 import { CheckListItem } from "../CheckListItem";
 import { Container, Title } from "./styles";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { PiCheckFatFill } from "react-icons/pi";
 const CheckList = () => {
-  const [checkLists] = useState([
+  const [checkLists, setCheckLists] = useState([
     "가스 벨브 잠그기",
     "지팡이 챙기기",
     "현관문 잠그기",
   ]);
+
+  useEffect(() => {
+    if (getCheckList().length > 0) {
+      let tempList = checkLists;
+      tempList = tempList.slice(0, CHECK_LIST_COUNT);
+      tempList[CHECK_LIST_COUNT] = getCheckList();
+      setCheckLists(tempList);
+    }
+  }, [getCheckList()]);
+
   return (
     <Container>
       <Title>

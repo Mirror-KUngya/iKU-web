@@ -45,7 +45,7 @@ const Description = styled.h1`
 const Line = styled.div`
   width: 90%;
   height: 5px;
-  margin: 10% 0;
+  margin: 7% 0;
   background-color: lightgray;
 `;
 export { Container, Button, RowContainer, Title, Description, Line };

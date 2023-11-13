@@ -4,7 +4,7 @@ export const ItemContainer = styled.div`
   padding: 10px;
   margin: 10px;
   width: 90%;
-  min-height: 50px;
+  height: 120px;
   display: flex;
   align-items: center;
   border-bottom: 1px white solid;

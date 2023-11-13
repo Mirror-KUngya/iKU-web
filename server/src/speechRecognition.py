@@ -27,9 +27,12 @@ keyword_links = ["clap", "smile", "side", "wordChain"]
 while True:
     with mic as source:
         try:
-            audio = r.listen(source, phrase_time_limit=3)
+            print("Say Anything!", flush=True)  # 인식 시작
 
+            audio = r.listen(source, phrase_time_limit=3)
             result = r.recognize_google(audio, language="ko-KR")
+
+            print("In Progress...", flush=True)  # 처리 시작
 
             if listening_for_activation:
                 if result.find("거울아") != -1:
@@ -39,6 +42,7 @@ while True:
                 else:
                     print(result, "is not call mirror", flush=True)
             else:
+                print("In Progress...", flush=True)  # 처리 시작
                 trimResult = result.strip()
                 for i in range(0, 4):
                     if trimResult in keywords[i]:
@@ -56,6 +60,7 @@ while True:
                 break
 
         except sr.UnknownValueError:  # 음성 인식에 실패한 경우
+            print("In Progress...", flush=True)  # 처리 시작
             print("do not recognize anyting", flush=True)
 
         except sr.RequestError:  # API 요청에 실패한 경우

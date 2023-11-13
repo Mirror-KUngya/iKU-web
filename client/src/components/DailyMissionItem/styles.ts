@@ -4,10 +4,12 @@ export const ItemContainer = styled.div`
   padding: 10px;
   margin: 10px;
   width: 90%;
+  height: 120px;
   min-height: 50px;
   display: flex;
   justify-content: space-between;
   align-self: center;
+  align-items: center;
   border: 1px white solid;
   border-radius: 20px;
   svg {
