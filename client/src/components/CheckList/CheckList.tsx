@@ -6,6 +6,7 @@ import { CheckListItem } from "../CheckListItem";
 import { Container, Title } from "./styles";
 import { useEffect, useState } from "react";
 import { PiCheckFatFill } from "react-icons/pi";
+
 const CheckList = () => {
   const [checkLists, setCheckLists] = useState([
     "가스 벨브 잠그기",
@@ -20,6 +21,8 @@ const CheckList = () => {
       tempList[CHECK_LIST_COUNT] = getCheckList();
       setCheckLists(tempList);
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [getCheckList()]);
 
   return (
