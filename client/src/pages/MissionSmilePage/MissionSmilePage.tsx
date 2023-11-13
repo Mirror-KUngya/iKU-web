@@ -76,7 +76,9 @@ const MissionSmilePage = () => {
           ? ` 미션 ${missionResult ? "성공!" : "실패"}`
           : "에러 발생, 네트워크를 확인해주세요. "}
       </MissionStatusText>
-      <CurrentStatusText>{smileStatus ? "smile" : "\n"}</CurrentStatusText>
+      <CurrentStatusText>
+        {smileStatus ? "웃고 있어요 ^^" : "다시 웃어보세요 ~ㄴ"}
+      </CurrentStatusText>
     </Container>
   );
 };
