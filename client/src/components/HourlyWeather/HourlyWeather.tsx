@@ -23,7 +23,6 @@ const HourlyWeather = () => {
 
         let temp: hourlyItem[] = [];
         list.forEach((item: any) => {
-          console.log(item.weather[0].main); // 영어 날씨 -> 체크리스트 POST 기준
           const time = moment(item.dt_txt);
           const dayorNight = time.format("a") === "am" ? "오전 " : "오후 ";
           temp.push({

@@ -1,60 +1,36 @@
-import {
-  CHECK_LIST_COUNT,
-  getCheckList,
-} from "../../hooks/patchWeatherCheckList";
+import { useGetCheckList } from "../../hooks";
+import { getCheckList } from "../../hooks/patchWeatherCheckList";
 import { CheckListItem } from "../CheckListItem";
 import { Container, Title } from "./styles";
 import { useEffect, useState } from "react";
 import { PiCheckFatFill } from "react-icons/pi";
 
 const CheckList = () => {
-  // const [checkLists, setCheckLists] = useState<string[]>([]);
-  const [checkLists, setCheckLists] = useState([
-    "가스 벨브 잠그기",
-    "지팡이 챙기기",
-    "현관문 잠그기",
-  ]);
+  const [checkLists, setCheckLists] = useState<string[]>([]);
+
+  const { mutate, data } = useGetCheckList();
 
   useEffect(() => {
-    if (getCheckList().length > 0) {
-      let tempList = checkLists;
-      tempList = tempList.slice(0, CHECK_LIST_COUNT);
-      tempList[CHECK_LIST_COUNT] = getCheckList();
-      setCheckLists(tempList);
-    }
+    mutate();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [getCheckList()]);
-  // const { mutate, data } = useGetCheckList();
+  }, []);
 
-  // useEffect(() => {
-  //   mutate();
+  useEffect(() => {
+    let tempArr: string[] = [];
+    if (data) {
+      data.forEach((item) => {
+        tempArr.push(item.toDo);
+      });
 
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
+      if (getCheckList().length > 0) {
+        tempArr.push(getCheckList());
+      }
+      setCheckLists(tempArr);
+    }
 
-  // useEffect(() => {
-  //   let tempArr: string[] = [];
-  //   if (data) {
-  //     data.forEach((item) => {
-  //       tempArr.push(item.toDo);
-  //     });
-
-  // if (getCheckList().length > 0) {
-  //   let tempArr.push();
-  //   tempList = tempList.slice(0, CHECK_LIST_COUNT);
-  //   tempList[CHECK_LIST_COUNT] = getCheckList();
-  //   setCheckLists(tempList);
-  // }
-  //   setCheckLists(tempArr);
-  // }
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [data]);
-
-  // useEffect(() => {
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [getCheckList()]);
+    //  eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data]);
 
   return (
     <Container>
