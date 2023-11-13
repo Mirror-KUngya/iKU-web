@@ -36,7 +36,7 @@ const WheatherInfo = () => {
     else if (temp >= 9) content = "잠바, 코트 ,기모바지를 추천드려요.";
     else if (temp >= 5) content = "코트, 발열내의, 가죽 옷, 기모를 추천드려요.";
     else if (temp < 5)
-      content = "패딩, 두거운 코트, 누빔 옷, 기모, 목도리를 추천드려요.";
+      content = "패딩, 두꺼운 코트, 누빔 옷, 기모, 목도리를 추천드려요.";
 
     patchWeatherCheckList(content);
   }, [temp]);

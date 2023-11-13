@@ -1,23 +1,21 @@
 import styled from "styled-components";
 
 export const Title = styled.h1`
-  font-size: 4rem;
+  font-size: 6rem;
 `;
 
 export const Description = styled.p`
-  font-size: 3rem;
+  font-size: 4rem;
   font-weight: bold;
-  margin: 30px auto;
+  margin: 60px auto;
   white-space: pre-line;
 `;
 
 export const ImageWrapper = styled.div`
-  margin: 50px 0;
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
+  margin: 100px 0;
+  width: 100vw;
 `;
 
 export const Image = styled.img`
-  height: 30vh;
+  height: 35vh;
 `;

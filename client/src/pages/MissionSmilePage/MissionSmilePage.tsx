@@ -77,7 +77,8 @@ const MissionSmilePage = () => {
           : "에러 발생, 네트워크를 확인해주세요. "}
       </MissionStatusText>
       <CurrentStatusText>
-        {smileStatus ? "웃고 있어요 ^^" : "다시 웃어보세요 ~ㄴ"}
+        {status !== MissionStatus.DEFAULT &&
+          (smileStatus ? "웃고 있어요 ^^" : "다시 웃어보세요 ~")}
       </CurrentStatusText>
     </Container>
   );

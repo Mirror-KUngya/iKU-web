@@ -6,15 +6,15 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.h1`
-  font-size: 3rem;
+  font-size: 8rem;
 `;
 
 export const MissionStatusText = styled.p`
-  font-size: 2.8rem;
+  font-size: 5rem;
 `;
 
 export const CurrentStatusText = styled.p`
-  font-size: 2.3rem;
+  font-size: 4rem;
   color: lightcoral;
   min-height: 30px;
 `;
