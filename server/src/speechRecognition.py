@@ -26,9 +26,9 @@ keywords = [
         "clap",
         "박수 짝짝",
     ],
-    ["웃기", "활짝 웃기", "스마일"],
-    ["옆구리운동", "옆구리", "옆구리스트레칭", "옆구리 운동"],
-    ["끝말잇기", "끝말잇기게임", "게임", "끝말"],
+    ["웃기", "활짝 웃기", "스마일", "웃어볼래"],
+    ["옆구리운동", "옆구리", "옆구리스트레칭", "옆구리 미션", "옆구리미션", "옆구리 운동", "운동"],
+    ["끝말잇기", "끝말잇기게임", "게임", "끝말", "끝말잇기 미션", "끝말잇기미션"],
 ]
 
 keyword_links = ["clap", "smile", "side", "wordChain"]
@@ -54,7 +54,7 @@ while True:
                 print("In Progress...", flush=True)  # 처리 시작
                 trimResult = result.strip()
                 for i in range(0, 4):
-                    if trimResult.find(keywords[i]):
+                    if trimResult.find(keywords[i]) != -1:
                         print(
                             keyword_links[i],
                             "> is defined function, result: >",
