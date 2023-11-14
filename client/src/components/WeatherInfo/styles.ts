@@ -6,18 +6,19 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   margin: 0 auto;
-  max-height: 220px;
+  max-height: 200px;
 `;
 
 export const Icon = styled.img`
-  height: 130px;
-  margin: 0;
+  height: 120px;
+  margin: 0 30px;
 `;
 
 export const Text = styled.p`
-  font-size: 3.5rem;
+  font-size: 3rem;
   font-weight: 900;
-  margin: 20px 0 0 0;
+  margin: 10px 0 0 0;
+  text-align: center;
 `;
 
 const rotate = keyframes`
