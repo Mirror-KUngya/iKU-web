@@ -38,9 +38,11 @@ let checkListContent = "";
 export const CHECK_LIST_COUNT = 3;
 
 export const patchWeatherCheckList = (content: string) => {
+  console.log("patchCheck");
   checkListContent = content;
 };
 
 export const getCheckList = () => {
+  console.log("getCheck");
   return checkListContent;
 };

@@ -19,6 +19,7 @@ const MainPage = () => {
   const [titleText, setTitleText] = useState({ first: "", second: "" });
   const [saying, setSaying] = useState(false);
   const [recognizing, setRecognizing] = useState(false);
+  const [currentTemp, setCurrentTemp] = useState(0);
 
   useEffect(() => {
     //runSpeechRecognition

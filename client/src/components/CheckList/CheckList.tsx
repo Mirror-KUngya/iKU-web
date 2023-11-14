@@ -23,14 +23,13 @@ const CheckList = () => {
         tempArr.push(item.toDo);
       });
 
-      if (getCheckList().length > 0) {
-        tempArr.push(getCheckList());
-      }
+      console.log(getCheckList());
+      tempArr.push(getCheckList());
       setCheckLists(tempArr);
     }
 
     //  eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data]);
+  }, [data, getCheckList().length]);
 
   return (
     <Container>
