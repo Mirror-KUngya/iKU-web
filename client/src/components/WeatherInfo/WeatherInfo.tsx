@@ -26,6 +26,7 @@ const WheatherInfo = ({ onChange }: WeatherInfoProps) => {
     };
 
     fetchWeather();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
