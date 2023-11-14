@@ -5,7 +5,7 @@ const TimeOutInfo = ({ sec }: { sec: number }) => {
   return (
     <Container>
       <PiTimerBold />
-      {sec}초
+      제한시간 | {sec}초
     </Container>
   );
 };

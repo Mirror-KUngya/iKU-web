@@ -36,8 +36,6 @@ const MissionClapPage = () => {
         setStatus(MissionStatus.RUNNING);
       } else if (data.event === "result") {
         if (data.data.includes("clap")) setClapCount((prev) => prev + 1);
-        else if (data.data.includes("canceled"))
-          setClapCount((prev) => prev - 1);
         if (data.data.includes("mission")) {
           setStatus(MissionStatus.END);
           if (data.data.includes("success")) {
@@ -58,14 +56,6 @@ const MissionClapPage = () => {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  // useEffect(() => {
-  //   if (clapCount >= 3) {
-  //     setMissionResult(true);
-  //     navigate("/");
-  //   }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [clapCount]);
 
   useEffect(() => {
     if (missionResult) mutate();
@@ -91,7 +81,7 @@ const MissionClapPage = () => {
           : ""}
       </MissionStatusText>
       <CurrentStatusText>박수 횟수 : {clapCount}</CurrentStatusText>
-      <TimeOutInfo sec={MISSION_TIME} />
+      {status === MissionStatus.RUNNING && <TimeOutInfo sec={MISSION_TIME} />}
     </Container>
   );
 };

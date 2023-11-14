@@ -54,7 +54,7 @@ while True:
                 print("In Progress...", flush=True)  # 처리 시작
                 trimResult = result.strip()
                 for i in range(0, 4):
-                    if trimResult in keywords[i]:
+                    if trimResult.find(keywords[i]):
                         print(
                             keyword_links[i],
                             "> is defined function, result: >",

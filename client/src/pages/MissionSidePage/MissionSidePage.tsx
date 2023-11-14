@@ -82,7 +82,7 @@ const MissionSidePage = () => {
       <CurrentStatusText>왼쪽 횟수 : {leftCount}</CurrentStatusText>
       <CurrentStatusText>오른쪽 횟수 : {rightCount}</CurrentStatusText>
 
-      <TimeOutInfo sec={MISSION_TIME} />
+      {status === MissionStatus.RUNNING && <TimeOutInfo sec={MISSION_TIME} />}
     </Container>
   );
 };

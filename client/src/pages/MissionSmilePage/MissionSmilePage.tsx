@@ -83,7 +83,7 @@ const MissionSmilePage = () => {
           (smileStatus ? "웃고 있어요 ^^" : "다시 웃어보세요 ~")}
       </CurrentStatusText>
 
-      <TimeOutInfo sec={MISSION_TIME} />
+      {status === MissionStatus.RUNNING && <TimeOutInfo sec={MISSION_TIME} />}
     </Container>
   );
 };

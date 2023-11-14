@@ -120,11 +120,6 @@ while True:
             ):
                 clapping = False  # 손이 멀어졌을 때 clapping 상태를 해제합니다.
 
-            # 손이 교차 상태에서 펼쳐지면 박수 카운트를 감소시킵니다.
-            if not current_hands_crossed and hands_crossed and clap_count > 0:
-                clap_count -= 1
-                print("canceled", flush=True)
-
             hands_crossed = current_hands_crossed  # 손 교차 상태 업데이트
             previous_hand_distance = hand_distance
 

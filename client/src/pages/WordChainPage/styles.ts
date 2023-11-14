@@ -6,7 +6,7 @@ export const Container = styled.div`
   height: 90vh;
   flex-direction: column;
   text-align: center;
-  svg {
+  & > svg {
     margin: 0 auto;
   }
 `;

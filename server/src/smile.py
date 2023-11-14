@@ -177,7 +177,7 @@ while True:
         )
 
     # 화면에 결과 표시
-    cv2.imshow("Smile Detector", image_rgb)
+    # cv2.imshow("Smile Detector", image_rgb)
 
     # 프로그램 종료 조건 확인
     current_time = time.time()

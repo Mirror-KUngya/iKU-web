@@ -73,13 +73,13 @@ const MainPage = () => {
       )}
       {saying ? <TiMicrophone size={"4rem"} /> : <BiLoader size={"4rem"} />}
       <RowContainer>
-        <CheckList />
+        <CheckList temp={currentTemp} />
         <DailyMission />
       </RowContainer>
       <Line />
       <RowContainer>
         <DateInfo />
-        <WeatherInfo />
+        <WeatherInfo onChange={setCurrentTemp} />
       </RowContainer>
       <HourlyWeather />
     </Container>
