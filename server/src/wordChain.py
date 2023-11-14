@@ -86,6 +86,7 @@ while count < 3:
                 continue
             else:
                 playsound("voice/wordChain_fail.mp3")
+                continue
 
         except sr.UnknownValueError:  # 음성 인식에 실패한 경우
             print("do not recognize anyting", flush=True)

@@ -88,7 +88,7 @@ while True:
         # 운동 완료 조건 체크
         if right_exercise_started:
             time_elapsed = time.time() - right_start_time
-            if time_elapsed > 3:
+            if time_elapsed > 5:
                 right_exercise_started = False
             else:
                 if (
@@ -102,11 +102,12 @@ while True:
 
         if left_exercise_started:
             time_elapsed = time.time() - left_start_time
-            if time_elapsed > 3:
+            if time_elapsed > 5:
                 left_exercise_started = False
             else:
                 if (
-                    left_wrist.x > left_eye.x
+                    time_elapsed >= 0.5
+                    and left_wrist.x > left_eye.x
                     and (right_shoulder.y - left_shoulder.y)
                     > shoulder_movement_threshold
                 ):
@@ -118,7 +119,7 @@ while True:
         mp_drawing.draw_landmarks(
             image_rgb, results.pose_landmarks, mp_pose.POSE_CONNECTIONS
         )
-"""
+    """
     # 화면에 운동 횟수 표시
     cv2.putText(
         image_rgb,
@@ -143,7 +144,7 @@ while True:
 
     # 화면에 이미지 표시
     cv2.imshow("MediaPipe Pose", image_rgb)
-
+    """
     # 양쪽 옆구리 운동 횟수 각 2회 이상일 시 미션 완료 및 프로그램 종료
     if right_side_exercise_count >= 2 and left_side_exercise_count >= 2:
         print("mission success", flush=True)
@@ -162,7 +163,7 @@ while True:
     # 'q' 키를 누르면 종료
     if cv2.waitKey(10) & 0xFF == ord("q"):
         break
-"""
+
 pose.close()
 picam2.stop()
 cv2.destroyAllWindows()

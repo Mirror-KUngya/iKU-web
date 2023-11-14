@@ -114,7 +114,10 @@ while True:
                         print("clap", clap_count, flush=True)
                         last_clap_time = current_time
                 clapping = True
-            elif hand_distance > (hand_distance_threshold + 250):
+            elif (
+                hand_distance > (hand_distance_threshold + 250)
+                and previous_hand_distance < hand_distance
+            ):
                 clapping = False  # 손이 멀어졌을 때 clapping 상태를 해제합니다.
 
             # 손이 교차 상태에서 펼쳐지면 박수 카운트를 감소시킵니다.
@@ -160,7 +163,7 @@ while True:
     )
 
     # 화면에 결과를 표시합니다.
-    cv2.imshow("MediaPipe Pose", image_rgb)
+    # cv2.imshow("MediaPipe Pose", image_rgb)
 
     # 박수 3회 이상일 시 미션 완료 및 프로그램 종료
     if clap_count >= 3:
