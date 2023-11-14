@@ -44,8 +44,8 @@ const MainPage = () => {
         navigate(`/mission/${data.data}`);
       } else if (data.event === "routing-failed") {
         setTitleText({
-          first: `${data.data}`,
-          second: `은(는) 제가 할 수 없는 일이에요.`,
+          first: ``,
+          second: `제가 할 수 없는 일이에요.`,
         });
       } else if (data.event === "close") {
         eventSource.close();
