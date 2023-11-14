@@ -22,7 +22,7 @@ picam2 = Picamera2()
 picam2.start_preview()
 
 # 카메라 설정
-camera_config = picam2.create_preview_configuration(main={"size": (1280, 720)})
+camera_config = picam2.create_preview_configuration(main={"size": (1080, 1280)})
 picam2.configure(camera_config)
 picam2.start()
 
@@ -118,7 +118,7 @@ while True:
         mp_drawing.draw_landmarks(
             image_rgb, results.pose_landmarks, mp_pose.POSE_CONNECTIONS
         )
-
+"""
     # 화면에 운동 횟수 표시
     cv2.putText(
         image_rgb,
@@ -162,7 +162,7 @@ while True:
     # 'q' 키를 누르면 종료
     if cv2.waitKey(10) & 0xFF == ord("q"):
         break
-
+"""
 pose.close()
 picam2.stop()
 cv2.destroyAllWindows()

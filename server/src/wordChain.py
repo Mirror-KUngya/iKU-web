@@ -68,9 +68,9 @@ while count < 3:
             audio = r.listen(source, phrase_time_limit=3)
             answer = r.recognize_google(audio, language="ko-KR")
 
-            print("result" + answer, flush=True)
-
             print("In Progress...", flush=True)  # 처리 시작
+
+            print("result" + answer, flush=True)
 
             is_continue = word_relay.check_continue(suggestion, answer)
             if is_continue:

@@ -35,7 +35,11 @@ picam2 = Picamera2()
 picam2.start_preview()
 
 # 카메라 설정
-camera_config = picam2.create_preview_configuration(main={"size": (1280, 720)})
+camera_config = picam2.create_preview_configuration(main={"size": (1080, 1280)})
+camera_config["controls"]["FrameDurationLimits"] = (
+    16666,
+    16666,
+)  # 30fps 설정, 값은 마이크로초 단위
 picam2.configure(camera_config)
 picam2.start()
 
@@ -110,7 +114,7 @@ while True:
                         print("clap", clap_count, flush=True)
                         last_clap_time = current_time
                 clapping = True
-            elif hand_distance > hand_distance_threshold:
+            elif hand_distance > (hand_distance_threshold + 250):
                 clapping = False  # 손이 멀어졌을 때 clapping 상태를 해제합니다.
 
             # 손이 교차 상태에서 펼쳐지면 박수 카운트를 감소시킵니다.
