@@ -54,14 +54,15 @@ while True:
                 print("In Progress...", flush=True)  # 처리 시작
                 trimResult = result.strip()
                 for i in range(0, 4):
-                    if trimResult.find(keywords[i]) != -1:
-                        print(
-                            keyword_links[i],
-                            "> is defined function, result: >",
-                            trimResult,
-                        )
-                        listening_for_function = False
-                        break
+                    for j in range(0, len(keywords[i])):
+                        if trimResult.find(keywords[i][j]) != -1:
+                            print(
+                                keyword_links[i],
+                                "> is defined function, result: >",
+                                trimResult,
+                            )
+                            listening_for_function = False
+                            break
                 if listening_for_function:
                     print(trimResult, "> is not defined function", flush=True)
                     playsound("voice/recognitionFail.mp3")
