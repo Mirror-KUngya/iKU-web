@@ -22,7 +22,7 @@ const HourlyWeather = () => {
         setLoading(false);
 
         let temp: hourlyItem[] = [];
-        list.forEach((item: any) => {
+        list.slice(2).forEach((item: any) => {
           const time = moment(item.dt_txt);
           const dayorNight = time.format("a") === "am" ? "오전 " : "오후 ";
           temp.push({
