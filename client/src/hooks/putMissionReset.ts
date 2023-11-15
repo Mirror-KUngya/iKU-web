@@ -25,7 +25,7 @@ export function usePutMissionReset() {
       ),
     {
       onSuccess: (response) => {
-        location.reload();
+        window.location.reload();
       },
       onError: (error: AxiosError) => {},
     }
