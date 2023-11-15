@@ -48,4 +48,27 @@ const Line = styled.div`
   margin: 4% 0;
   background-color: gray;
 `;
-export { Container, Button, RowContainer, Title, Description, Line };
+
+const HideButton = styled.button`
+  position: fixed;
+  left: 0;
+  background-color: transparent;
+  cursor: pointer;
+  border: none;
+  width: 120px;
+  height: 50px;
+  font-size: 2rem;
+  &:hover {
+    background-color: gray;
+  }
+`;
+
+export {
+  Container,
+  Button,
+  RowContainer,
+  Title,
+  Description,
+  Line,
+  HideButton,
+};

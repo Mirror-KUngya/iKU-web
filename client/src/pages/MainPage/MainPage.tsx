@@ -8,10 +8,18 @@ import {
   UserName,
   WeatherInfo,
 } from "../../components";
-import { Container, Description, Line, RowContainer, Title } from "./styles";
+import {
+  Container,
+  Description,
+  HideButton,
+  Line,
+  RowContainer,
+  Title,
+} from "./styles";
 import { useEffect, useState } from "react";
 import { TiMicrophone } from "react-icons/ti";
 import { BiLoader } from "react-icons/bi";
+import { usePutMissionReset } from "../../hooks/putMissionReset";
 
 const MainPage = () => {
   const navigate = useNavigate();
@@ -60,10 +68,18 @@ const MainPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const { mutate } = usePutMissionReset();
   return (
     <Container>
       <UserName />
       <LoginButton />
+      <HideButton
+        onClick={() => {
+          mutate();
+        }}
+      >
+        미션리셋
+      </HideButton>
       <Title>
         <span>{titleText.first}</span>
         {titleText.second}
