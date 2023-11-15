@@ -11,7 +11,6 @@ const CheckList = ({ temp }: { temp: number }) => {
 
   useEffect(() => {
     mutate();
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -30,7 +29,7 @@ const CheckList = ({ temp }: { temp: number }) => {
         content = "얇은 가디건, 스웨터, 긴바지를 추천드려요.";
       else if (temp >= 12)
         content = "자켓, 가디건, 스웨터, 긴바지를 추천드려요.";
-      else if (temp >= 9) content = "잠바, 코트 ,기모바지를 추천드려요.";
+      else if (temp >= 9) content = "잠바, 코트, 기모바지를 추천드려요.";
       else if (temp >= 5)
         content = "코트, 발열내의, 가죽 옷, 기모를 추천드려요.";
       else if (temp < 5)
