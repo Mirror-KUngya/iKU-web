@@ -30,22 +30,26 @@ const DailyMission = () => {
     {
       title: "박수 치기",
       name: "Clap",
+      page: "/mission/clap",
       fulfilled: false,
     },
     {
       title: "활짝 웃기",
       name: "Smile",
+      page: "/mission/smile",
       fulfilled: false,
     },
     {
       title: "옆구리 운동",
       name: "Exercise",
+      page: "/mission/side",
       fulfilled: false,
     },
     {
       title: "끝말잇기",
       name: "WordChain",
-      fulfilled: data ? data.WordChain : false,
+      page: "/mission/wordChain",
+      fulfilled: false,
     },
   ]);
 
@@ -55,9 +59,14 @@ const DailyMission = () => {
         <FaPersonWalking size={"3rem"} />
         일일 미션
       </Title>
-      {dailyMission.map(({ title, fulfilled }, idx) => {
+      {dailyMission.map(({ title, fulfilled, page }, idx) => {
         return (
-          <DailyMissionItem title={title} fulfilled={fulfilled} key={idx} />
+          <DailyMissionItem
+            title={title}
+            fulfilled={fulfilled}
+            key={idx}
+            page={page}
+          />
         );
       })}
     </Container>
