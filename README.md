@@ -36,8 +36,8 @@ PW : 1111
 ```
 
 ### 앱 실행방법
-- 아래 레포지토리 다운로드
-https://github.com/Mirror-KUngya/iKu-app
+- 앱 레포지토리 다운로드
+<br/>https://github.com/Mirror-KUngya/iKu-app
 ``` 
 cd client
 npm install
@@ -55,7 +55,7 @@ npm start
 
 ### 웹 프론트엔드 
 - 아래 링크 접속
-- https://iku.netlify.app/
+<br/>https://iku.netlify.app/
 
 
 ### 하드웨어 
@@ -75,17 +75,26 @@ npm start
 
 - 인공지능 
 ![MediaPipe](https://img.shields.io/badge/-MediaPipe-FF6F00?style=flat-square&logo=Google&logoColor=white) 
-![Python](https://img.shields.io/badge/-Python-3776AB?style=flat-square&logo=Python&logoColor=white)![OpenCV](https://img.shields.io/badge/-OpenCV-5C3EE8?style=flat-square&logo=OpenCV&logoColor=white)
+![Python](https://img.shields.io/badge/-Python-3776AB?style=flat-square&logo=Python&logoColor=white)
+![OpenCV](https://img.shields.io/badge/-OpenCV-5C3EE8?style=flat-square&logo=OpenCV&logoColor=white)
 
 
 - 하드웨어 ![Raspberry Pi](https://img.shields.io/badge/-Raspberry%20Pi-A22846?style=flat-square&logo=Raspberry-Pi&logoColor=white)
 
 - 배포환경 ![Netlify](https://img.shields.io/badge/-Netlify-00C7B7?style=flat-square&logo=Netlify&logoColor=white)
+![CloudType](https://img.shields.io/badge/-CloudType-0A0A0A?style=for-the-badge&logo=data:image/png;base64,[BASE64_ENCODED_IMAGE])
 
+- 협업
+![GitHib](https://img.shields.io/badge/-GitHub-181717?style=flat-square&logo=GitHub&logoColor=white)
+![Notion](https://img.shields.io/badge/-Notion-black?style=flat-square&logo=Notion&logoColor=white)
+![Pigma](https://img.shields.io/badge/-Figma-F24E1E?style=flat-square&logo=Figma&logoColor=white)
 
 ## 📌 주요 기능
 #### 일일미션
-박수 3회 치기, 옆구리 스트레칭 양쪽 2회, 웃음짓기 5초, 끝말잇기 게임 3회 
+1. 박수 3회 치기
+2. 옆구리 스트레칭 양쪽 2회
+3. 웃음짓기 5초
+4. 끝말잇기 게임 3회 
 #### 외출 체크리스트
 사용자가 외출 하기 전 확인하고 갈 수 있도록 가스 불 끄기, 약 챙기기 등 어플리케이션을 통해 사용자화 가능
 #### 보호자 알림 서비스
@@ -96,22 +105,24 @@ npm start
 터치, 마우스, 키보드 등의 조작이 어려운 노인들을 대상으로 하기 때문에 음성인식으로 조작
 
 
-## 📁 관련 자료
+## 📁 관련 자료 및 결과
 - 웹 메인페이지 및 실제 구현 사진
 
   
-<img height="500" alt="image" src="https://github.com/Mirror-KUngya/iKU-web/assets/33516975/b13e01c3-93d7-4cc9-9e53-eb3e83e82f0a">
-<img height="500" src="https://github.com/Mirror-KUngya/iKU-web/assets/33516975/7edf07d0-96aa-4c90-b997-8ac2a2eff9ed"/>
-<img height="500" src="https://github.com/Mirror-KUngya/iKU-web/assets/33516975/c7903298-cb35-4cb9-8d37-ad3ae8a4d797"/>
+<img height="400" alt="image" src="https://github.com/Mirror-KUngya/iKU-web/assets/33516975/b13e01c3-93d7-4cc9-9e53-eb3e83e82f0a">
+<img height="400" src="https://github.com/Mirror-KUngya/iKU-web/assets/33516975/7edf07d0-96aa-4c90-b997-8ac2a2eff9ed"/>
+<img height="400" src="https://github.com/Mirror-KUngya/iKU-web/assets/33516975/c7903298-cb35-4cb9-8d37-ad3ae8a4d797"/>
+<img height="400" src="https://github.com/Mirror-KUngya/iKU-web/assets/33516975/33556edd-bda4-4b82-a737-4525d2c2660d"/>
 
-
-- 대회 포스터
+- 대회 포스터 및 수상결과 
   
-<img src="https://github.com/Mirror-KUngya/iKU-web/assets/33516975/c3efed96-fd3e-42ee-8de1-035a8a38d5f4" width="500"/>
+<img src="https://github.com/Mirror-KUngya/iKU-web/assets/33516975/c3efed96-fd3e-42ee-8de1-035a8a38d5f4" height="500"/>
+
+<img height="500" src="https://github.com/Mirror-KUngya/iKU-web/assets/33516975/b75ad2b8-14ad-4a0b-9539-638f8467db96"/>
 
 
 - 시연영상링크
   : https://youtu.be/fi_D4ZUQ8h8?si=crZi9viAKyG9lQSW
 
-- 와이어프레임 링크
+- 웹, 앱 피그마 링크
 : https://www.figma.com/file/wSCoTdKG7Qy3zknYdyhyH3/Untitled?type=design&node-id=0%3A1&mode=design&t=jx8eOJmIj7aMLiYD-1
