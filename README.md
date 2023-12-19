@@ -1,6 +1,6 @@
 # iKU
 독거노인을 위한 스마트미러 (라즈베리파이, 미디어파이프 활용 )<br/>
-건국대학교 2023년 SW 경진대회 장려상 수상작 🥉
+건국대학교 2023년 SW 경진대회 장려상 수상작 🥉 
 
 
 ## 🖥️ 프로젝트 소개
@@ -20,14 +20,27 @@
 
 ## 🖥️ 설치 및 실행 방법
 
-23년 11월 15일 기준, 해당 프로젝트는 카메라 기능이 라즈베리파이4.0B 환경에서 정상작동하며, 
+23년 12월 20일 기준, 해당 프로젝트는 윈도우 및 Mac 환경에서 모든 기능이 정상작동되도록 코드를 수정한 상태이며,
+라즈베리파이 환경에서는 작동하지 않습니다. 
 
-윈도우 및 macOS 환경에서도 정상작동되도록 리팩토링 과정에 있습니다. 
+만약, 라즈베리파이 환경에서 작동해야 할 경우
+server/routes/detect.js 파일의 line 25-28 을 수정해야합니다.
+```js
+// 기존 코드
 
-카메라가 필요한 일일미션 (박수치기, 활짝 웃기, 옆구리 스트레칭) 외
+  let targetFile = "";
+  if (mission === "smile") targetFile = "smile.py";
+  else if (mission === "clap") targetFile = "clap.py";
+  else if (mission === "side") targetFile = "side.py";
 
-끝말잇기, 음성인식, 날씨/날짜 정보, 애플리케이션은 정상 작동됩니다. 
+// 수정 후 코드
 
+  let targetFile = "";
+  if (mission === "smile") targetFile = "smile_pi.py";
+  else if (mission === "clap") targetFile = "clap_pi.py";
+  else if (mission === "side") targetFile = "side_pi.py";
+
+```
 
 ### 테스트 계정
 ```
