@@ -3,9 +3,10 @@ import mediapipe as mp
 import numpy as np
 import sys
 import time
+from picamera2 import Picamera2
 from playsound import playsound
 
-playsound("../voice/clap_start.mp3")
+playsound("voice/clap_start.mp3")
 print("loading", flush=True)
 
 mp_drawing_styles = mp.solutions.drawing_styles
@@ -14,25 +15,39 @@ mp_pose = mp.solutions.pose
 
 # 설정값
 pose = mp_pose.Pose(
-    min_detection_confidence=0.5,
-    min_tracking_confidence=0.5,
+    min_detection_confidence=0.8,
+    min_tracking_confidence=0.3,
     model_complexity=1,  # 기본값은 1, 가능한 값은 0, 1, 또는 2입니다.
 )
 
-
 # 웹캠에서 비디오 스트림 시작
-cap = cv2.VideoCapture(0)
+# cap = cv2.VideoCapture(1)
 
-if not cap.isOpened():
-    print("Error opening video stream or file")
-    sys.exit()
+# if not cap.isOpened():
+#     print("Error opening video stream or file")
+#     sys.exit()
 
-frame_width = int(cap.get(3))
-frame_height = int(cap.get(4))
+# frame_width = int(cap.get(3))
+# frame_height = int(cap.get(4))
+
+# Picamera2 시작
+picam2 = Picamera2()
+picam2.start_preview()
+
+# 카메라 설정
+camera_config = picam2.create_preview_configuration(main={"size": (1080, 1280)})
+camera_config["controls"]["FrameDurationLimits"] = (
+    16666,
+    16666,
+)  # 30fps 설정, 값은 마이크로초 단위
+picam2.configure(camera_config)
+picam2.start()
+
+frame_width, frame_height = picam2.sensor_resolution
 
 # 박수 감지 관련 변수 초기화
 clap_count = 0
-hand_distance_threshold = 100
+hand_distance_threshold = 650
 previous_hand_distance = np.inf
 last_clap_time = 0
 clapping = False
@@ -43,19 +58,19 @@ start_time = time.time()  # 프로그램 시작 시간
 camera_started_flag = False  # 카메라 시작 플래그 초기화
 
 while True:
-    ret, image = cap.read()
-    if not ret:
-        print("Error receiving frame from webcam.")
+    # Picamera2로부터 이미지 프레임 받아오기
+    image = picam2.capture_array()
+    if image is None:
+        print("Error receiving frame from Picamera2.")
         break
-
-    image_rgb = image
-    results = pose.process(image_rgb)
 
     if not camera_started_flag:  # 카메라 시작 플래그를 체크합니다.
         print("Camera started")  # 카메라가 시작되면 이 메시지를 출력합니다.
         sys.stdout.flush()
         camera_started_flag = True  # 플래그를 설정하여 메시지가 다시 출력되지 않도록 합니다.
 
+    image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+    results = pose.process(image_rgb)
     image_bgr = cv2.cvtColor(image_rgb, cv2.COLOR_BGR2RGB)
 
     if results.pose_landmarks:
@@ -81,7 +96,7 @@ while True:
             )
 
             # 현재 손이 교차되었는지 여부를 판단합니다.
-            # current_hands_crossed = left_hand_x < right_hand_x
+            current_hands_crossed = left_hand_x < right_hand_x
 
             # 손이 멀어졌다가 다시 가까워지는 것을 감지합니다.
             if (
@@ -105,10 +120,9 @@ while True:
             ):
                 clapping = False  # 손이 멀어졌을 때 clapping 상태를 해제합니다.
 
-            # hands_crossed = current_hands_crossed  # 손 교차 상태 업데이트
+            hands_crossed = current_hands_crossed  # 손 교차 상태 업데이트
             previous_hand_distance = hand_distance
 
-    """
     # 영상에 박수 횟수 표시
     cv2.putText(
         image_rgb,
@@ -143,15 +157,13 @@ while True:
         2,
     )
 
-
     # 화면에 결과를 표시합니다.
-    cv2.imshow("MediaPipe Pose", image_rgb)
+    # cv2.imshow("MediaPipe Pose", image_rgb)
 
-    """
     # 박수 3회 이상일 시 미션 완료 및 프로그램 종료
     if clap_count >= 3:
         print("mission success", flush=True)
-        playsound("../voice/clap_success.mp3")
+        playsound("voice/clap_success.mp3")
         break
 
     current_time = time.time()
@@ -160,15 +172,13 @@ while True:
     if elapsed_time >= 15:
         print("timeout", flush=True)
         print("mission failed", flush=True)
-        playsound("../voice/mission_fail.mp3")
+        playsound("voice/mission_fail.mp3")
         break
 
-    """
     # ESC 키를 누르면 종료합니다.
     if cv2.waitKey(1) & 0xFF == 27:
         break
-    """
 
 pose.close()
-cap.release()
+picam2.stop()
 cv2.destroyAllWindows()

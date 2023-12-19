@@ -1,11 +1,13 @@
 import time
 import cv2
 import mediapipe as mp
+import numpy as np
 import sys
 import collections
+from picamera2 import Picamera2
 from playsound import playsound
 
-playsound("../voice/smile_start.mp3")
+playsound("voice/smile_start.mp3")
 print("loading", flush=True)
 
 # MediaPipe FaceMesh 초기화
@@ -16,13 +18,17 @@ face_mesh = mp_face_mesh.FaceMesh(max_num_faces=1)
 drawing_spec = mp.solutions.drawing_utils.DrawingSpec(thickness=1, circle_radius=1)
 
 # 웹캠에서 비디오를 가져오기
-cap = cv2.VideoCapture(1)
+# cap = cv2.VideoCapture(1)
 
-# 프레임레이트를 확인
-fps = cap.get(cv2.CAP_PROP_FPS)
-if fps < 1:
-    # 대체 프레임레이트 설정
-    fps = 30
+# Picamera2 시작
+picam2 = Picamera2()
+picam2.start_preview()
+
+fps = 30
+# 카메라 설정
+camera_config = picam2.create_preview_configuration(main={"size": (1280, 720)})
+picam2.configure(camera_config)
+picam2.start()
 
 # 이전 입 너비와 입꼬리 상대 y좌표를 저장할 버퍼 (1초분량)
 prev_mouth_widths = collections.deque(maxlen=int(fps))
@@ -40,9 +46,11 @@ start_time = time.time()  # 프로그램 시작 시간
 
 camera_started_flag = False  # 카메라 시작 플래그 초기화
 
-while cap.isOpened():
-    ret, frame = cap.read()
-    if not ret:
+while True:
+    # Picamera2로부터 이미지 프레임 받아오기
+    frame = picam2.capture_array()
+    if frame is None:
+        print("Error receiving frame from Picamera2.")
         break
 
     if not camera_started_flag:  # 카메라 시작 플래그를 체크합니다.
@@ -50,9 +58,10 @@ while cap.isOpened():
         sys.stdout.flush()
         camera_started_flag = True  # 플래그를 설정하여 메시지가 다시 출력되지 않도록 합니다.
 
-    image_rgb = frame
+    image_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
     results = face_mesh.process(image_rgb)
 
+    image_bgr = cv2.cvtColor(image_rgb, cv2.COLOR_RGB2BGR)
     # 웃음 감지
     is_smiling = False
 
@@ -102,7 +111,6 @@ while cap.isOpened():
                     if smile_start_time is None:
                         smile_start_time = time.time()  # 웃기 시작한 시간 기록
                     is_smiling = True
-
                     cv2.putText(
                         image_rgb,
                         "Smiling",
@@ -134,8 +142,6 @@ while cap.isOpened():
         print("smile", flush=True)  # 표준 출력으로 "Smiling" 메시지 출력
         current_smiling_time = time.time() - smile_start_time
         smiling_time = previous_smiling_time + current_smiling_time
-
-        """
         cv2.putText(
             image_rgb,
             f"Smiling for: {current_smiling_time:.2f} sec",
@@ -154,15 +160,12 @@ while cap.isOpened():
             (255, 255, 255),
             2,
         )
-        """
 
     else:
         # 웃음이 멈춘 경우 누적된 웃음 시간 표시
         previous_smiling_time = smiling_time
 
         print("not", flush=True)
-
-        """
         cv2.putText(
             image_rgb,
             f"Total smiling time: {smiling_time:.2f} sec",
@@ -172,7 +175,6 @@ while cap.isOpened():
             (255, 255, 255),
             2,
         )
-        """
 
     # 화면에 결과 표시
     # cv2.imshow("Smile Detector", image_rgb)
@@ -183,22 +185,27 @@ while cap.isOpened():
 
     if smiling_time >= 5:
         print("mission success", flush=True)
-        playsound("../voice/smile_success.mp3")
+        playsound("voice/smile_success.mp3")
         break
 
     if elapsed_time >= 15:
         print("mission failed", flush=True)
-        playsound("../voice/mission_fail.mp3")
+        playsound("voice/mission_fail.mp3")
         break
 
-    """
     # 'q'를 누르면 반복문 탈출
     if cv2.waitKey(5) & 0xFF == ord("q"):
         break
-    """
 
+    # # 'q'를 누르면 프로그램 종료 (이 부분은 필요에 따라 제거할 수 있습니다)
+    # if cv2.waitKey(1) & 0xFF == ord("q"):
+    #     break
 
 # 자원 해제
-cap.release()
+# cap.release()
+
+# 자원 해제
+picam2.stop_preview()
+picam2.stop()
 cv2.destroyAllWindows()
 face_mesh.close()
