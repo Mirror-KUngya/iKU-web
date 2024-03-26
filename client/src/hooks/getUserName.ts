@@ -15,8 +15,8 @@ export function useGetUserName() {
   return useMutation(() => getUserName(getLocalStorageData("UserID")), {
     onSuccess: (response) => {},
     onError: (error: AxiosError) => {
-      alert("로그인이 필요합니다.");
-      navigate("/login");
+      // alert("로그인이 필요합니다.");
+      // navigate("/login");
     },
   });
 }
