@@ -10,7 +10,6 @@ const DailyMission = () => {
 
   useEffect(() => {
     mutate();
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -22,7 +21,6 @@ const DailyMission = () => {
 
       setDailyMission(updatedMissions);
     }
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
